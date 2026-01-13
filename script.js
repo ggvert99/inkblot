@@ -588,7 +588,7 @@ function initAnalytics() {
     document.querySelectorAll('[href="#join"]').forEach(btn => {
         btn.addEventListener('click', () => {
             const isHero = btn.closest('.hero');
-            trackEvent(isHero ? 'cta_click_waitlist' : 'cta_click_waitlist', {
+            trackEvent('cta_click_waitlist', {
                 location: isHero ? 'hero' : 'page'
             });
         });

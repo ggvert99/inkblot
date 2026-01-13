@@ -11,6 +11,25 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     
+    <!-- Custom Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Radio Newsman';
+            src: url('fonts/RadioNewsman.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'LazyDog';
+            src: url('fonts/lazy_dog.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+    
     <!-- Stylesheet: styles.css for experiments, styles-original.css for original -->
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
@@ -96,9 +115,12 @@
         
         .share-section {
             padding: var(--space-8);
-            background: white;
+            background: var(--color-cream);
             border-radius: var(--radius-2xl);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 
+                8px 8px 20px rgba(69, 21, 27, 0.1),
+                -6px -6px 16px rgba(255, 255, 255, 0.9),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
         }
         
         .share-section h3 {
@@ -179,7 +201,7 @@
                 <p>Spread the word — help us build the coziest corner of the internet</p>
                 
                 <div class="social-share">
-                    <a href="https://twitter.com/intent/tweet?text=I%20just%20joined%20the%20Inkblot%20Crew!%20Curated%20indie%20romance%20boxes%20coming%20soon.%20Join%20me%3A&url=" class="social-btn" target="_blank" rel="noopener">
+                    <a href="https://twitter.com/intent/tweet?text=I%20just%20joined%20the%20Inkblot%20Crew!%20Curated%20indie%20romance%20boxes%20coming%20soon.%20Join%20me%3A&url=https%3A%2F%2Finkblotcrew.com" class="social-btn" target="_blank" rel="noopener">
                         <svg viewBox="0 0 24 24" fill="currentColor">
                             <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                         </svg>
@@ -207,12 +229,15 @@
     
     <script>
         function copyLink() {
-            const url = window.location.origin + '/index.html';
+            const url = window.location.origin;
             navigator.clipboard.writeText(url).then(() => {
                 document.getElementById('copyText').textContent = 'Copied!';
                 setTimeout(() => {
                     document.getElementById('copyText').textContent = 'Copy link';
                 }, 2000);
+            }).catch(() => {
+                // Fallback for older browsers
+                prompt('Copy this link:', url);
             });
         }
     </script>
