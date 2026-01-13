@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inkblot Crew — Indie Romance Subscription Box (UK)</title>
+    <meta name="description" content="A quarterly subscription box spotlighting indie romance gems — books, goodies, author extras, and a cozy community. UK delivery.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Inkblot Crew — Indie Romance Subscription Box">
+    <meta property="og:description" content="Where undiscovered love stories meet their readers. Quarterly drops of curated indie romance books, bookish goodies, and exclusive author content.">
+    <meta property="og:image" content="images/og-image.jpg">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Inkblot Crew — Indie Romance Subscription Box">
+    <meta name="twitter:description" content="Where undiscovered love stories meet their readers.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Custom Fonts -->
+    <style>
+        @font-face {
+            font-family: 'Radio Newsman';
+            src: url('fonts/RadioNewsman.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'LazyDog';
+            src: url('fonts/lazy_dog.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+    </style>
+    
+    <!-- Stylesheet: styles.css for experiments, styles-original.css for original -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <span class="logo-text">inkblot crew</span>
+                <span class="logo-tagline">indie romance finds you</span>
+            </a>
+            
+            <nav class="nav" id="nav">
+                <ul class="nav-list">
+                    <li><a href="#how-it-works">How it works</a></li>
+                    <li><a href="#whats-inside">What's inside</a></li>
+                    <li><a href="#community">Community</a></li>
+                    <li><a href="#publishers">For publishers</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="header-cta">
+                <a href="#join" class="btn btn-primary">Join the Crew</a>
+                <button class="header-icon-btn" id="cartBtn" aria-label="Shopping cart">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="9" cy="21" r="1"/>
+                        <circle cx="20" cy="21" r="1"/>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                    </svg>
+                    <span class="cart-badge hidden">0</span>
+                </button>
+                <button class="header-icon-btn" id="loginBtn" aria-label="Login">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                        <circle cx="12" cy="7" r="4"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#how-it-works">How it works</a></li>
+                <li><a href="#whats-inside">What's inside</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#publishers">For publishers</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <div class="mobile-cta">
+                <a href="#join" class="btn btn-primary btn-full">Join the Crew</a>
+                <a href="#publishers" class="btn btn-ghost btn-full">Partner with us</a>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal-overlay hidden" id="loginModal">
+        <div class="modal">
+            <button class="modal-close" id="closeLoginModal" aria-label="Close modal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
+            </button>
+            
+            <!-- Email Step -->
+            <div class="login-step" id="loginStepEmail">
+                <h3>sign in</h3>
+                <p>Enter your email and we'll send you a code</p>
+                <form id="loginEmailForm">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" name="email" required placeholder="your@email.com">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span class="btn-text">Send code</span>
+                        <span class="btn-loading">
+                            <svg class="spinner" width="20" height="20" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4" stroke-dashoffset="10"/>
+                            </svg>
+                        </span>
+                    </button>
+                </form>
+            </div>
+            
+            <!-- Code Step -->
+            <div class="login-step hidden" id="loginStepCode">
+                <h3>enter code</h3>
+                <p>We sent a code to <span id="loginEmailDisplay"></span></p>
+                <form id="loginCodeForm">
+                    <div class="code-input-group">
+                        <input type="text" maxlength="1" class="code-input" data-index="0" inputmode="numeric" pattern="[0-9]">
+                        <input type="text" maxlength="1" class="code-input" data-index="1" inputmode="numeric" pattern="[0-9]">
+                        <input type="text" maxlength="1" class="code-input" data-index="2" inputmode="numeric" pattern="[0-9]">
+                        <input type="text" maxlength="1" class="code-input" data-index="3" inputmode="numeric" pattern="[0-9]">
+                        <input type="text" maxlength="1" class="code-input" data-index="4" inputmode="numeric" pattern="[0-9]">
+                        <input type="text" maxlength="1" class="code-input" data-index="5" inputmode="numeric" pattern="[0-9]">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <span class="btn-text">Verify</span>
+                        <span class="btn-loading">
+                            <svg class="spinner" width="20" height="20" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4" stroke-dashoffset="10"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <button type="button" class="btn-text resend-btn" id="resendCode">Resend code</button>
+                </form>
+            </div>
+            
+            <!-- Success Step -->
+            <div class="login-step hidden" id="loginStepSuccess">
+                <div class="success-check">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                        <polyline points="22 4 12 14.01 9 11.01"/>
+                    </svg>
+                </div>
+                <h3>you're in!</h3>
+                <p>Welcome back to the crew</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-texture"></div>
+        </div>
+        
+        <div class="container hero-content">
+            <div class="hero-text">
+                <span class="hero-badge">Coming Early 2026</span>
+                <h1 class="hero-headline">where undiscovered love stories meet their readers.</h1>
+                <p class="hero-subhead">A quarterly subscription box spotlighting indie romance gems — books, goodies, author extras, and a cozy community.</p>
+                
+                <div class="hero-proof">
+                    <span class="proof-item">UK delivery</span>
+                    <span class="proof-divider">•</span>
+                    <span class="proof-item">English titles</span>
+                    <span class="proof-divider">•</span>
+                    <span class="proof-item">Quarterly drops</span>
+                </div>
+                
+                <div class="hero-cta">
+                    <a href="#join" class="btn btn-primary btn-lg">
+                        <span>Join the Crew</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#whats-inside" class="btn btn-ghost btn-lg">See what's inside</a>
+                </div>
+            </div>
+            
+            <div class="hero-visual" id="heroVisual">
+                <!-- Hero illustration without book -->
+                <div class="hero-illustration">
+                    <div class="hero-card hero-card-1" data-depth="0.4">
+                        <div class="hero-card-glow"></div>
+                        <div class="hero-card-inner">
+                            <span class="hero-card-text">Curated picks</span>
+                        </div>
+                    </div>
+                    <div class="hero-card hero-card-2" data-depth="0.3">
+                        <div class="hero-card-glow"></div>
+                        <div class="hero-card-inner">
+                            <span class="hero-card-text">Author extras</span>
+                        </div>
+                    </div>
+                    <div class="hero-card hero-card-3" data-depth="0.5">
+                        <div class="hero-card-glow"></div>
+                        <div class="hero-card-inner">
+                            <span class="hero-card-text">Cozy goodies</span>
+                        </div>
+                    </div>
+                    <div class="hero-card hero-card-4" data-depth="0.35">
+                        <div class="hero-card-glow"></div>
+                        <div class="hero-card-inner">
+                            <span class="hero-card-text">Community</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+    <!-- What is Inkblot Crew -->
+    <section class="section section-about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">what is inkblot crew?</h2>
+            </div>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <p class="lead">Once a quarter, we spotlight fresh voices and underrated love stories that deserve way more attention than they're getting.</p>
+                    <p>We're obsessed with indie romance — the kind that makes you stay up way too late, ugly-cry on the tube, and immediately text your book bestie "YOU HAVE TO READ THIS." Inkblot Crew is our way of sharing those discoveries with you.</p>
+                    <p>Think of it as a surprise self-treat that lands on your doorstep four times a year. New books, bookish goodies, exclusive author content, and a community of readers who get it.</p>
+                </div>
+                
+                <div class="about-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                        </div>
+                        <h3>Curated indie picks</h3>
+                        <p>Hand-selected romance gems from indie authors you'll fall head over heels for.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                            </svg>
+                        </div>
+                        <h3>Unboxing magic</h3>
+                        <p>That "surprise self-treat" energy — every box is a cozy little celebration.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
+                            </svg>
+                        </div>
+                        <h3>Community chat</h3>
+                        <p>Monthly book club sessions and forums where we ugly-cry together. No spoilers until we're all ready!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="section section-steps" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">how it works</h2>
+            </div>
+            
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-content">
+                        <h3>Join the waitlist</h3>
+                        <p>Pop your email below and you'll be first to know when we launch. Early birds get special perks</p>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-content">
+                        <h3>We reveal the theme</h3>
+                        <p>Each quarter has a different vibe — we'll tease the theme and drop window so you know what's coming.</p>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-content">
+                        <h3>Subscribe & receive</h3>
+                        <p>Lock in your spot, and your perfectly curated box arrives at your door. Quarterly joy, delivered.</p>
+                    </div>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">04</div>
+                    <div class="step-content">
+                        <h3>Unbox & connect</h3>
+                        <p>Dive into your reads, enjoy your goodies, and join the community chat to discuss all the feels.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's in the Box -->
+    <section class="section section-box" id="whats-inside">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">what's in the box?</h2>
+                <p class="section-subtitle">Every quarterly drop is packed with romance reader essentials</p>
+            </div>
+            
+            <div class="box-grid">
+                <div class="box-card">
+                    <div class="box-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3>indie romance books</h3>
+                    <p>1-2 carefully curated indie romance titles per box. Fresh voices, underrated gems, books that'll wreck you in the best way.</p>
+                    <div class="box-card-tag">The main event</div>
+                </div>
+                
+                <div class="box-card">
+                    <div class="box-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                        </svg>
+                    </div>
+                    <h3>bookish goodies</h3>
+                    <p>Bookmarks, candles, tea blends, cozy treats that match each theme.</p>
+                </div>
+                
+                <div class="box-card">
+                    <div class="box-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                        </svg>
+                    </div>
+                    <h3>author extras</h3>
+                    <p>Playlists, signed bookplates, handwritten notes.</p>
+                </div>
+                
+                <div class="box-card">
+                    <div class="box-card-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
+                        </svg>
+                    </div>
+                    <h3>community access</h3>
+                    <p>Dedicated forums, monthly book club sessions, and a space to connect with readers who truly get your obsession with romance.</p>
+                </div>
+            </div>
+            
+            <div class="box-quote">
+                <p class="quote-text">"Like opening a love letter from your future favourite author"</p>
+                <span class="quote-attribution">— What we're going for</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials / Social Proof -->
+    <section class="section section-testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">the buzz so far</h2>
+            </div>
+        </div>
+        
+        <!-- Infinite scroll testimonials -->
+        <div class="testimonials-wrapper">
+            <div class="testimonials-track">
+                <!-- First set -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Finally a subscription box that actually gets indie romance! Can't wait for the first drop"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@bookish_emma</span>
+                        <span class="author-platform">BookTok</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The concept is everything. Curated indie picks + community? Sign me UP."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@romance.reads.uk</span>
+                        <span class="author-platform">Instagram</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"I've been waiting for something like this in the UK. No more missing out on US-only boxes!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@paiges_of_romance</span>
+                        <span class="author-platform">BookTok</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Supporting indie authors AND getting cozy goodies? This is literally my dream subscription"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@theliterarylove</span>
+                        <span class="author-platform">Instagram</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The quarterly format is perfect. Actually gives me time to read before the next one arrives!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@readwithmia</span>
+                        <span class="author-platform">BookTok</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"As an indie author, I'm SO excited about this platform for discovery. Game changer!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@authorjessicahart</span>
+                        <span class="author-platform">Author</span>
+                    </div>
+                </div>
+                
+                <!-- Duplicate set for seamless loop -->
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Finally a subscription box that actually gets indie romance! Can't wait for the first drop"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@bookish_emma</span>
+                        <span class="author-platform">BookTok</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The concept is everything. Curated indie picks + community? Sign me UP."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@romance.reads.uk</span>
+                        <span class="author-platform">Instagram</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"I've been waiting for something like this in the UK. No more missing out on US-only boxes!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@paiges_of_romance</span>
+                        <span class="author-platform">BookTok</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Supporting indie authors AND getting cozy goodies? This is literally my dream subscription"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@theliterarylove</span>
+                        <span class="author-platform">Instagram</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"The quarterly format is perfect. Actually gives me time to read before the next one arrives!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@readwithmia</span>
+                        <span class="author-platform">BookTok</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"As an indie author, I'm SO excited about this platform for discovery. Game changer!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <span class="author-name">@authorjessicahart</span>
+                        <span class="author-platform">Author</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section section-pricing" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">simple, transparent pricing</h2>
+                <p class="section-subtitle">Quarterly drops, no hidden fees. Cancel anytime.</p>
+            </div>
+            
+            <div class="pricing-grid pricing-grid-3">
+                <div class="pricing-card pricing-card-starter">
+                    <h3 class="pricing-name">try it once</h3>
+                    <div class="pricing-price">
+                        <span class="price-currency">£</span>
+                        <span class="price-amount">42</span>
+                        <span class="price-period">one-time</span>
+                    </div>
+                    <p class="pricing-description">Perfect if you want to try before committing</p>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            1 curated indie romance book
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            3-4 bookish goodies
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Author exclusive content
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            No commitment
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Free UK shipping
+                        </li>
+                    </ul>
+                    <a href="#join" class="btn btn-ghost btn-full">Try a Box</a>
+                </div>
+                
+                <div class="pricing-card pricing-card-featured">
+                    <div class="pricing-badge">Best Value</div>
+                    <h3 class="pricing-name">the book lover</h3>
+                    <div class="pricing-price">
+                        <span class="price-currency">£</span>
+                        <span class="price-amount">45</span>
+                        <span class="price-period">/quarter</span>
+                    </div>
+                    <p class="pricing-description">For those who can't choose just one book</p>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <strong>2 curated indie romance books</strong>
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            5-6 premium bookish goodies
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Author exclusive content
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Priority community access
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Free UK shipping
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Early access to drops
+                        </li>
+                    </ul>
+                    <a href="#join" class="btn btn-primary btn-full">Join the Crew</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-badge">Most Popular</div>
+                    <h3 class="pricing-name">the cozy reader</h3>
+                    <div class="pricing-price">
+                        <span class="price-currency">£</span>
+                        <span class="price-amount">38</span>
+                        <span class="price-period">/quarter</span>
+                    </div>
+                    <p class="pricing-description">Perfect for discovering your next favourite indie author</p>
+                    <ul class="pricing-features">
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            1 curated indie romance book
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            3-4 bookish goodies
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Author exclusive content
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Community access
+                        </li>
+                        <li>
+                            <svg class="check-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Free UK shipping
+                        </li>
+                    </ul>
+                    <a href="#join" class="btn btn-primary btn-full">Join the Crew</a>
+                </div>
+            </div>
+            
+                    <p class="pricing-note">Prices are estimates and may vary slightly at launch. Join the waitlist for early-bird pricing!</p>
+        </div>
+    </section>
+
+    <!-- Who it's For -->
+    <section class="section section-audience" id="community">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">who it's for</h2>
+            </div>
+            
+            <div class="audience-grid">
+                <div class="audience-card audience-readers">
+                    <div class="audience-header">
+                        <h3>For Readers</h3>
+                    </div>
+                    <div class="audience-content">
+                        <p class="audience-lead">Romance readers in the UK who want to discover their next obsession before everyone else does.</p>
+                        
+                        <ul class="audience-list">
+                            <li>
+                                <span class="check-icon">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                        <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                You're always looking for your next book boyfriend (or girlfriend, or situationship...)
+                            </li>
+                            <li>
+                                <span class="check-icon">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                        <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                You live for BookTok/Bookstagram recs
+                            </li>
+                            <li>
+                                <span class="check-icon">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                        <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                You want to support indie authors while getting gorgeous treats
+                            </li>
+                            <li>
+                                <span class="check-icon">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                        <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                You crave a community that gets your reading chaos
+                            </li>
+                        </ul>
+                        
+                        <p class="audience-promise">"Discover a gem, fall hard, talk about it with people who get it."</p>
+                        
+                        <a href="#join" class="btn btn-primary">Join the Crew</a>
+                    </div>
+                </div>
+                
+                <div class="audience-card audience-publishers" id="publishers">
+                    <div class="audience-header">
+                        <h3>For Publishers & Authors</h3>
+                    </div>
+                    <div class="audience-content">
+                        <p class="audience-lead">Get your books into the hands of engaged, passionate romance readers who love sharing discoveries.</p>
+                        
+                        <ul class="audience-list">
+                            <li>
+                                <span class="check-icon">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                        <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                Guaranteed placement & feature in our quarterly boxes
+                            </li>
+                            <li>
+                                <span class="check-icon">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                        <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                Influencer seeding to active BookTok/Bookstagram creators
+                            </li>
+                            <li>
+                                <span class="check-icon">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                        <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                Post-campaign insights & engagement metrics
+                            </li>
+                            <li>
+                                <span class="check-icon">
+                                    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
+                                        <path d="M16.667 5L7.5 14.167 3.333 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                                Long-tail discoverability with dedicated community
+                            </li>
+                        </ul>
+                        
+                        <p class="audience-promise">Visibility, sales, reviews, and readers who'll champion your books.</p>
+                        
+                        <a href="#join" class="btn btn-secondary" onclick="selectPublisherMode()">Discuss a Partnership</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partnership Model -->
+    <section class="section section-partnership">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">partnership model</h2>
+                <p class="section-subtitle">Flexible options designed for indie publishers and authors</p>
+            </div>
+            
+            <div class="partnership-grid">
+                <div class="partnership-card">
+                    <div class="partnership-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
+                        </svg>
+                    </div>
+                    <h3>Book Acquisition</h3>
+                    <p>Wholesale bulk purchase or consignment with guaranteed minimum. We make it easy to get your titles featured.</p>
+                </div>
+                
+                <div class="partnership-card">
+                    <div class="partnership-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+                        </svg>
+                    </div>
+                    <h3>What We Love</h3>
+                    <p>Signed bookplates, author interviews, Q&As with subscribers, exclusive content that makes our boxes special.</p>
+                </div>
+                
+                <div class="partnership-card">
+                    <div class="partnership-icon">
+                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M10.34 15.84c-.688-.06-1.386-.09-2.09-.09H7.5a4.5 4.5 0 110-9h.75c.704 0 1.402-.03 2.09-.09m0 9.18c.253.962.584 1.892.985 2.783.247.55.06 1.21-.463 1.511l-.657.38c-.551.318-1.26.117-1.527-.461a20.845 20.845 0 01-1.44-4.282m3.102.069a18.03 18.03 0 01-.59-4.59c0-1.586.205-3.124.59-4.59m0 9.18a23.848 23.848 0 018.835 2.535M10.34 6.66a23.847 23.847 0 008.835-2.535m0 0A23.74 23.74 0 0018.795 3m.38 1.125a23.91 23.91 0 011.014 5.395m-1.014 8.855c-.118.38-.245.754-.38 1.125m.38-1.125a23.91 23.91 0 001.014-5.395m0-3.46c.495.413.811 1.035.811 1.73 0 .695-.316 1.317-.811 1.73m0-3.46a24.347 24.347 0 010 3.46"/>
+                        </svg>
+                    </div>
+                    <h3>What You Get</h3>
+                    <p>Cross-promotion, social assets, post-campaign insights, and access to an engaged community of romance readers.</p>
+                </div>
+            </div>
+            
+            <div class="partnership-cta">
+                <p>Ready to get your books into the hands of readers who'll love them?</p>
+                <a href="#join" class="btn btn-primary" onclick="selectPublisherMode()">Start the Conversation</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section section-faq" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">faq</h2>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How do you acquire books?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We work directly with indie publishers and authors! We either purchase wholesale in bulk or arrange consignment with a guaranteed minimum. This means authors get paid and readers get exclusive access to amazing indie titles.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How often do boxes ship?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We're a quarterly subscription — that's four glorious boxes per year. Enough time to actually read your books (we know the TBR is real), but often enough to keep the cozy vibes coming.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Where do you ship?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We're launching with the UK first! We want to make sure we nail the experience before expanding to other regions. Stay tuned for updates on international shipping.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What's actually in the box?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Each box includes 1-2 indie romance books (depending on your tier), plus bookish goodies like bookmarks, candles, tea blends, and more. You'll also get exclusive author content (playlists, notes, signed extras) and access to our subscriber community.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>What's the target audience?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Romance readers who love discovering new voices! Whether you're deep in BookTok, active on Bookstagram, or just someone who devours love stories — if you want to find your next favourite before everyone else, you're our people.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>How can publishers collaborate?</span>
+                        <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M5 12h14"/>
+                        </svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We'd love to chat! Fill out the partner form below and tell us about your titles. We work with indie publishers, self-published authors, and literary agents to find the perfect books for our subscribers.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA / Form -->
+    <section class="section section-cta" id="join">
+        <div class="container">
+            <div class="cta-content">
+                <div class="cta-text">
+                    <h2 class="cta-title">join the cozy corner.</h2>
+                    <p class="cta-subtitle">Get early access to the first drop + sneak peeks, reveals, and subscriber perks.</p>
+                </div>
+                
+                <div class="form-container">
+                    <form class="signup-form" id="signupForm">
+                        <!-- Hidden fields -->
+                        <input type="hidden" name="utm_source" id="utmSource">
+                        <input type="hidden" name="utm_medium" id="utmMedium">
+                        <input type="hidden" name="utm_campaign" id="utmCampaign">
+                        <input type="hidden" name="referrer" id="referrer">
+                        <input type="hidden" name="mode" id="formMode" value="reader">
+                        
+                        <!-- Honeypot -->
+                        <div class="form-honeypot" aria-hidden="true">
+                            <input type="text" name="website" tabindex="-1" autocomplete="off">
+                        </div>
+                        
+                        <!-- Mode Selector -->
+                        <div class="form-mode-selector">
+                            <button type="button" class="mode-btn active" data-mode="reader">
+                                <span>I'm a Reader</span>
+                            </button>
+                            <button type="button" class="mode-btn" data-mode="publisher">
+                                <span>I'm a Publisher/Author</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Email Field Only -->
+                        <div class="form-group">
+                            <label for="email">Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                            <span class="form-error" id="emailError">Oops! We'll need a valid email to keep you in the loop</span>
+                        </div>
+                        
+                        <!-- Publisher-specific Fields -->
+                        <div class="form-fields-publisher hidden" id="publisherFields">
+                            <div class="form-group">
+                                <label for="company">Company / Imprint / Author name <span class="required">*</span></label>
+                                <input type="text" id="company" name="company" placeholder="Your publishing name">
+                                <span class="form-error" id="companyError">We'd love to know who we're chatting with!</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Tell us about your books <span class="optional">(optional)</span></label>
+                                <textarea id="message" name="message" rows="3" placeholder="What titles are you excited about?"></textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Submit -->
+                        <button type="submit" class="btn btn-primary btn-lg btn-full">
+                            <span class="btn-text">Join the Crew</span>
+                            <span class="btn-loading">
+                                <svg class="spinner" width="20" height="20" viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3" fill="none" stroke-dasharray="31.4" stroke-dashoffset="10"/>
+                                </svg>
+                            </span>
+                        </button>
+                        
+                        <p class="form-note">By joining, you agree to receive updates about Inkblot Crew. Unsubscribe anytime.</p>
+                    </form>
+                    
+                    <!-- Success State -->
+                    <div class="form-success hidden" id="formSuccess">
+                        <div class="success-icon">
+                            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                <polyline points="22 4 12 14.01 9 11.01"/>
+                            </svg>
+                        </div>
+                        <h3>you're in!</h3>
+                        <p>We'll email you when the next drop is ready. Keep an eye on your inbox for sneak peeks and reveals.</p>
+                        <div class="success-share">
+                            <p>Know a bookish friend who'd love this?</p>
+                            <div class="share-buttons">
+                                <a href="#" class="share-btn" id="shareTwitter">Share on X</a>
+                                <a href="#" class="share-btn" id="shareCopy">Copy link</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="/" class="logo">
+                        <span class="logo-text">inkblot crew</span>
+                        <span class="logo-tagline">indie romance finds you</span>
+                    </a>
+                    <p class="footer-mission">Curated quarterly boxes spotlighting indie romance authors and the readers who love discovering them.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-col">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#how-it-works">How it works</a></li>
+                            <li><a href="#whats-inside">What's inside</a></li>
+                            <li><a href="#faq">FAQ</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <div class="social-icons">
+                            <a href="https://instagram.com/inkblotcrew" target="_blank" rel="noopener" data-event="outbound_click_instagram" class="social-icon-link" aria-label="Instagram">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                </svg>
+                            </a>
+                            <a href="#" target="_blank" rel="noopener" data-event="outbound_click_tiktok" class="social-icon-link" aria-label="TikTok">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+                                </svg>
+                            </a>
+                            <a href="#" target="_blank" rel="noopener" data-event="outbound_click_discord" class="social-icon-link" aria-label="Discord">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-col">
+                        <h4>Contact</h4>
+                        <ul>
+                            <li><a href="mailto:inkblotcrew@gmail.com">inkblotcrew@gmail.com</a></li>
+                            <li><a href="#publishers">Partner with us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <span class="divider">•</span>
+                    <a href="#">Terms of Service</a>
+                </div>
+                <p class="footer-copyright">© 2026 Inkblot Crew. Made with love for romance readers.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
