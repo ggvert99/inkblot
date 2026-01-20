@@ -1,0 +1,53 @@
+---
+import SectionHeader from '@components/common/SectionHeader.astro';
+import FeatureCard from '@components/cards/FeatureCard.astro';
+
+const features = [
+  {
+    icon: 'book',
+    title: 'Curated indie picks',
+    description: "Hand-selected romance gems from indie authors you'll fall head over heels for."
+  },
+  {
+    icon: 'heart',
+    title: 'Unboxing magic',
+    description: 'That "surprise self-treat" energy — every box is a cozy little celebration.'
+  },
+  {
+    icon: 'community',
+    title: 'Community chat',
+    description: "Monthly book club sessions and forums where we ugly-cry together. No spoilers until we're all ready!"
+  }
+];
+---
+
+<section class="section section-about" id="about">
+  <div class="container">
+    <SectionHeader title="what is inkblot crew?" />
+    
+    <div class="about-content">
+      <div class="about-text">
+        <h3 class="about-subheading">
+          Once a quarter, we spotlight fresh voices and underrated love stories 
+          that deserve way more attention than they're getting. We're obsessed 
+          with indie romance — the kind that makes you stay up way too late and 
+          ugly-cry on the tube.
+        </h3>
+      </div>
+      
+      <div class="about-features">
+        {features.map((feature) => (
+          <FeatureCard {...feature} />
+        ))}
+      </div>
+      
+      <div class="about-text">
+        <h3 class="about-subheading">
+          Think of it as a surprise self-treat that lands on your doorstep four 
+          times a year. New books, bookish goodies, exclusive author content, 
+          and a community of readers who get it.
+        </h3>
+      </div>
+    </div>
+  </div>
+</section>

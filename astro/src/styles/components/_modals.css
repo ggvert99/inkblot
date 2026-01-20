@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Modal Styles
+   ========================================================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background: rgba(69, 21, 27, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-6);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity var(--transition-base), visibility var(--transition-base);
+}
+
+.modal-overlay.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal {
+  background: var(--color-cream);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-10);
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 
+    12px 12px 28px rgba(69, 21, 27, 0.15),
+    -8px -8px 20px rgba(255, 255, 255, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  position: relative;
+  transform: translateY(0);
+  transition: transform var(--transition-base);
+}
+
+.modal-overlay.hidden .modal {
+  transform: translateY(20px);
+}
+
+.modal-close {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-4);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  color: var(--color-text-secondary);
+  transition: all var(--transition-fast);
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  background: rgba(69, 21, 27, 0.05);
+  color: var(--color-accent);
+}
+
+/* Login Steps */
+.login-step {
+  text-align: center;
+}
+
+.login-step h3 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-2);
+}
+
+.login-step > p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-6);
+}
+
+.login-step .form-group {
+  margin-bottom: var(--space-4);
+}
+
+.login-step .form-group input {
+  text-align: center;
+}
+
+/* Success Check Animation */
+.success-check {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--space-4);
+  background: var(--color-sweet);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+  animation: successPop 0.5s var(--ease-out);
+}

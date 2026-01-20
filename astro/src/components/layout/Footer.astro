@@ -1,0 +1,85 @@
+---
+import Icon from '@components/common/Icon.astro';
+
+const exploreLinks = [
+  { label: 'How it works', href: '#how-it-works' },
+  { label: "What's inside", href: '#whats-inside' },
+  { label: 'FAQ', href: '#faq' },
+];
+
+const socialLinks = [
+  { name: 'instagram', href: 'https://instagram.com/inkblotcrew', label: 'Instagram' },
+  { name: 'tiktok', href: '#', label: 'TikTok' },
+  { name: 'discord', href: '#', label: 'Discord' },
+];
+
+const contactLinks = [
+  { label: 'inkblotcrew@gmail.com', href: 'mailto:inkblotcrew@gmail.com' },
+  { label: 'Partner with us', href: '#publishers' },
+];
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="/" class="logo">
+          <span class="logo-text">inkblot crew</span>
+          <span class="logo-tagline">indie romance finds you</span>
+        </a>
+        <p class="footer-mission">
+          Curated quarterly boxes spotlighting indie romance authors 
+          and the readers who love discovering them.
+        </p>
+      </div>
+      
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            {exploreLinks.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="social-icons">
+            {socialLinks.map((social) => (
+              <a 
+                href={social.href} 
+                target="_blank" 
+                rel="noopener" 
+                class="social-icon-link" 
+                aria-label={social.label}
+              >
+                <Icon name={social.name} size={14} />
+              </a>
+            ))}
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            {contactLinks.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <span class="divider">•</span>
+        <a href="#">Terms of Service</a>
+      </div>
+      <p class="footer-copyright">
+        © {new Date().getFullYear()} Inkblot Crew. Made with love for romance readers.
+      </p>
+    </div>
+  </div>
+</footer>

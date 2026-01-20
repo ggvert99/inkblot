@@ -1,0 +1,22 @@
+/* ==========================================================================
+   Color Tokens
+   ========================================================================== */
+
+:root {
+  /* Brand Colors */
+  --color-chocolate: #45151B;
+  --color-aubergine: #664A65;
+  --color-terracotta: #C74E51;
+  --color-bittersweet: #EA9DAE;
+  --color-sweet: #FBDE9C;
+  --color-cream: #FAF7F3;
+  --color-mauvelous: #EF98AA;
+  
+  /* Semantic Colors */
+  --color-bg-primary: var(--color-cream);
+  --color-bg-secondary: var(--color-sweet);
+  --color-bg-accent: var(--color-bittersweet);
+  --color-text-primary: var(--color-chocolate);
+  --color-text-secondary: var(--color-aubergine);
+  --color-accent: var(--color-terracotta);
+}

@@ -1,0 +1,219 @@
+---
+import Icon from '@components/common/Icon.astro';
+import Button from '@components/common/Button.astro';
+---
+
+<div class="modal-overlay hidden" id="loginModal">
+  <div class="modal">
+    <button class="modal-close" id="closeLoginModal" aria-label="Close modal">
+      <Icon name="close" size={24} />
+    </button>
+    
+    <!-- Email Step -->
+    <div class="login-step" id="loginStepEmail">
+      <h3>sign in</h3>
+      <p>Enter your email and we'll send you a code</p>
+      <form id="loginEmailForm">
+        <div class="form-group">
+          <input 
+            type="email" 
+            id="loginEmail" 
+            name="email" 
+            required 
+            placeholder="your@email.com"
+          >
+        </div>
+        <Button type="submit" variant="primary" full>
+          <span class="btn-text">Send code</span>
+          <span class="btn-loading">
+            <Icon name="spinner" size={20} class="spinner" />
+          </span>
+        </Button>
+      </form>
+    </div>
+    
+    <!-- Code Step -->
+    <div class="login-step hidden" id="loginStepCode">
+      <h3>enter code</h3>
+      <p>We sent a code to <span id="loginEmailDisplay"></span></p>
+      <form id="loginCodeForm">
+        <div class="code-input-group">
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <input 
+              type="text" 
+              maxlength="1" 
+              class="code-input" 
+              data-index={i} 
+              inputmode="numeric" 
+              pattern="[0-9]"
+            />
+          ))}
+        </div>
+        <Button type="submit" variant="primary" full>
+          <span class="btn-text">Verify</span>
+          <span class="btn-loading">
+            <Icon name="spinner" size={20} class="spinner" />
+          </span>
+        </Button>
+        <button type="button" class="btn-text resend-btn" id="resendCode">
+          Resend code
+        </button>
+      </form>
+    </div>
+    
+    <!-- Success Step -->
+    <div class="login-step hidden" id="loginStepSuccess">
+      <div class="success-check">
+        <Icon name="check-circle" size={48} />
+      </div>
+      <h3>you're in!</h3>
+      <p>Welcome back to the crew</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const loginBtn = document.getElementById('loginBtn');
+  const cartBtn = document.getElementById('cartBtn');
+  const loginModal = document.getElementById('loginModal');
+  const closeBtn = document.getElementById('closeLoginModal');
+  const emailForm = document.getElementById('loginEmailForm');
+  const codeForm = document.getElementById('loginCodeForm');
+  const resendBtn = document.getElementById('resendCode');
+  const codeInputs = document.querySelectorAll<HTMLInputElement>('.code-input');
+  
+  const stepEmail = document.getElementById('loginStepEmail');
+  const stepCode = document.getElementById('loginStepCode');
+  const stepSuccess = document.getElementById('loginStepSuccess');
+  const emailDisplay = document.getElementById('loginEmailDisplay');
+  
+  let userEmail = '';
+  
+  function openLoginModal() {
+    loginModal?.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    showStep('email');
+    setTimeout(() => {
+      const emailInput = document.getElementById('loginEmail') as HTMLInputElement;
+      emailInput?.focus();
+    }, 100);
+  }
+  
+  function closeModal() {
+    loginModal?.classList.add('hidden');
+    document.body.style.overflow = '';
+  }
+  
+  function showStep(step: 'email' | 'code' | 'success') {
+    stepEmail?.classList.add('hidden');
+    stepCode?.classList.add('hidden');
+    stepSuccess?.classList.add('hidden');
+    
+    if (step === 'email') {
+      stepEmail?.classList.remove('hidden');
+    } else if (step === 'code') {
+      stepCode?.classList.remove('hidden');
+      setTimeout(() => codeInputs[0]?.focus(), 100);
+    } else if (step === 'success') {
+      stepSuccess?.classList.remove('hidden');
+      setTimeout(closeModal, 2000);
+    }
+  }
+  
+  // Event listeners
+  loginBtn?.addEventListener('click', openLoginModal);
+  cartBtn?.addEventListener('click', openLoginModal);
+  closeBtn?.addEventListener('click', closeModal);
+  
+  loginModal?.addEventListener('click', (e) => {
+    if (e.target === loginModal) closeModal();
+  });
+  
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !loginModal?.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+  
+  // Email form submission
+  emailForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const emailInput = document.getElementById('loginEmail') as HTMLInputElement;
+    const submitBtn = emailForm.querySelector('button[type="submit"]');
+    
+    submitBtn?.classList.add('loading');
+    if (submitBtn) (submitBtn as HTMLButtonElement).disabled = true;
+    
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      userEmail = emailInput.value;
+      if (emailDisplay) emailDisplay.textContent = userEmail;
+      showStep('code');
+    } finally {
+      submitBtn?.classList.remove('loading');
+      if (submitBtn) (submitBtn as HTMLButtonElement).disabled = false;
+    }
+  });
+  
+  // Code input handling
+  codeInputs.forEach((input, index) => {
+    input.addEventListener('input', () => {
+      if (!/^\d*$/.test(input.value)) {
+        input.value = '';
+        return;
+      }
+      
+      if (input.value && index < codeInputs.length - 1) {
+        codeInputs[index + 1]?.focus();
+      }
+      
+      const code = Array.from(codeInputs).map(i => i.value).join('');
+      if (code.length === 6) {
+        codeForm?.dispatchEvent(new Event('submit'));
+      }
+    });
+    
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Backspace' && !input.value && index > 0) {
+        codeInputs[index - 1]?.focus();
+      }
+    });
+  });
+  
+  // Code form submission
+  codeForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const code = Array.from(codeInputs).map(i => i.value).join('');
+    if (code.length !== 6) return;
+    
+    const submitBtn = codeForm.querySelector('button[type="submit"]');
+    submitBtn?.classList.add('loading');
+    if (submitBtn) (submitBtn as HTMLButtonElement).disabled = true;
+    
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      showStep('success');
+    } finally {
+      submitBtn?.classList.remove('loading');
+      if (submitBtn) (submitBtn as HTMLButtonElement).disabled = false;
+    }
+  });
+  
+  // Resend code
+  resendBtn?.addEventListener('click', async () => {
+    if (resendBtn) {
+      (resendBtn as HTMLButtonElement).disabled = true;
+      resendBtn.textContent = 'Sending...';
+    }
+    
+    await new Promise(resolve => setTimeout(resolve, 1500));
+    
+    if (resendBtn) {
+      resendBtn.textContent = 'Code sent!';
+      setTimeout(() => {
+        resendBtn.textContent = 'Resend code';
+        (resendBtn as HTMLButtonElement).disabled = false;
+      }, 3000);
+    }
+  });
+</script>

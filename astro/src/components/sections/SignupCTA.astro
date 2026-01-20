@@ -1,0 +1,243 @@
+---
+import Button from '@components/common/Button.astro';
+import Icon from '@components/common/Icon.astro';
+---
+
+<section class="section section-cta" id="join">
+  <div class="container">
+    <div class="cta-content">
+      <div class="cta-text">
+        <h2 class="cta-title">join the cozy corner.</h2>
+        <p class="cta-subtitle">
+          Get early access to the first drop + sneak peeks, reveals, and subscriber perks.
+        </p>
+      </div>
+      
+      <div class="form-container">
+        <form class="signup-form" id="signupForm">
+          <!-- Hidden fields -->
+          <input type="hidden" name="utm_source" id="utmSource">
+          <input type="hidden" name="utm_medium" id="utmMedium">
+          <input type="hidden" name="utm_campaign" id="utmCampaign">
+          <input type="hidden" name="referrer" id="referrer">
+          <input type="hidden" name="mode" id="formMode" value="reader">
+          
+          <!-- Honeypot -->
+          <div class="form-honeypot" aria-hidden="true">
+            <input type="text" name="website" tabindex="-1" autocomplete="off">
+          </div>
+          
+          <!-- Mode Selector -->
+          <div class="form-mode-selector">
+            <button type="button" class="mode-btn active" data-mode="reader">
+              <span>I'm a Reader</span>
+            </button>
+            <button type="button" class="mode-btn" data-mode="publisher">
+              <span>I'm a Publisher/Author</span>
+            </button>
+          </div>
+          
+          <!-- Email Field -->
+          <div class="form-group">
+            <label for="email">Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="your@email.com">
+            <span class="form-error" id="emailError">
+              Oops! We'll need a valid email to keep you in the loop
+            </span>
+          </div>
+          
+          <!-- Publisher-specific Fields -->
+          <div class="form-fields-publisher hidden" id="publisherFields">
+            <div class="form-group">
+              <label for="company">
+                Company / Imprint / Author name <span class="required">*</span>
+              </label>
+              <input type="text" id="company" name="company" placeholder="Your publishing name">
+              <span class="form-error" id="companyError">
+                We'd love to know who we're chatting with!
+              </span>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">
+                Tell us about your books <span class="optional">(optional)</span>
+              </label>
+              <textarea id="message" name="message" rows="3" placeholder="What titles are you excited about?"></textarea>
+            </div>
+          </div>
+          
+          <!-- Submit -->
+          <Button type="submit" variant="primary" size="lg" full>
+            <span class="btn-text">Join the Crew</span>
+            <span class="btn-loading">
+              <Icon name="spinner" size={20} class="spinner" />
+            </span>
+          </Button>
+          
+          <p class="form-note">
+            By joining, you agree to receive updates about Inkblot Crew. Unsubscribe anytime.
+          </p>
+        </form>
+        
+        <!-- Success State -->
+        <div class="form-success hidden" id="formSuccess">
+          <div class="success-icon">
+            <Icon name="check-circle" size={48} />
+          </div>
+          <h3>you're in!</h3>
+          <p>We'll email you when the next drop is ready. Keep an eye on your inbox for sneak peeks and reveals.</p>
+          <div class="success-share">
+            <p>Know a bookish friend who'd love this?</p>
+            <div class="share-buttons">
+              <a href="#" class="share-btn" id="shareTwitter">Share on X</a>
+              <a href="#" class="share-btn" id="shareCopy">Copy link</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('signupForm') as HTMLFormElement;
+  const modeButtons = document.querySelectorAll('.mode-btn');
+  const publisherFields = document.getElementById('publisherFields');
+  const formSuccess = document.getElementById('formSuccess');
+  const formModeInput = document.getElementById('formMode') as HTMLInputElement;
+  
+  let currentMode = 'reader';
+  
+  // Capture UTM params
+  const urlParams = new URLSearchParams(window.location.search);
+  const utmSource = document.getElementById('utmSource') as HTMLInputElement;
+  const utmMedium = document.getElementById('utmMedium') as HTMLInputElement;
+  const utmCampaign = document.getElementById('utmCampaign') as HTMLInputElement;
+  const referrerField = document.getElementById('referrer') as HTMLInputElement;
+  
+  if (utmSource) utmSource.value = urlParams.get('utm_source') || '';
+  if (utmMedium) utmMedium.value = urlParams.get('utm_medium') || '';
+  if (utmCampaign) utmCampaign.value = urlParams.get('utm_campaign') || '';
+  if (referrerField) referrerField.value = document.referrer || '';
+  
+  // Mode switching
+  modeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mode = (btn as HTMLElement).dataset.mode;
+      if (!mode || mode === currentMode) return;
+      
+      currentMode = mode;
+      formModeInput.value = mode;
+      
+      modeButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      if (mode === 'reader') {
+        publisherFields?.classList.add('hidden');
+      } else {
+        publisherFields?.classList.remove('hidden');
+      }
+    });
+  });
+  
+  // Form validation
+  function isValidEmail(email: string) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+  
+  function validateForm() {
+    let isValid = true;
+    const email = document.getElementById('email') as HTMLInputElement;
+    const emailGroup = email.closest('.form-group');
+    
+    if (!email.value || !isValidEmail(email.value)) {
+      emailGroup?.classList.add('error');
+      isValid = false;
+    } else {
+      emailGroup?.classList.remove('error');
+    }
+    
+    if (currentMode === 'publisher') {
+      const company = document.getElementById('company') as HTMLInputElement;
+      const companyGroup = company?.closest('.form-group');
+      if (company && company.value.trim() === '') {
+        companyGroup?.classList.add('error');
+        isValid = false;
+      } else {
+        companyGroup?.classList.remove('error');
+      }
+    }
+    
+    return isValid;
+  }
+  
+  // Form submission
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    if (!validateForm()) return;
+    
+    // Check honeypot
+    const honeypot = form.querySelector('input[name="website"]') as HTMLInputElement;
+    if (honeypot?.value) {
+      showSuccess();
+      return;
+    }
+    
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn?.classList.add('loading');
+    if (submitBtn) (submitBtn as HTMLButtonElement).disabled = true;
+    
+    try {
+      // Simulate API call - replace with actual endpoint
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      showSuccess();
+    } catch (error) {
+      console.error('Form submission error:', error);
+      alert('Oops! Something went wrong. Please try again.');
+    } finally {
+      submitBtn?.classList.remove('loading');
+      if (submitBtn) (submitBtn as HTMLButtonElement).disabled = false;
+    }
+  });
+  
+  function showSuccess() {
+    form?.classList.add('hidden');
+    formSuccess?.classList.remove('hidden');
+    formSuccess?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+  
+  // Share buttons
+  const shareTwitter = document.getElementById('shareTwitter');
+  const shareCopy = document.getElementById('shareCopy');
+  const shareText = "I just joined the Inkblot Crew! Curated indie romance boxes coming soon. Join me:";
+  const shareUrl = window.location.origin;
+  
+  if (shareTwitter) {
+    shareTwitter.setAttribute('href', `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`);
+    shareTwitter.setAttribute('target', '_blank');
+  }
+  
+  shareCopy?.addEventListener('click', async (e) => {
+    e.preventDefault();
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+      shareCopy.textContent = 'Copied!';
+      setTimeout(() => { shareCopy.textContent = 'Copy link'; }, 2000);
+    } catch {
+      prompt('Copy this link:', shareUrl);
+    }
+  });
+  
+  // Real-time validation
+  const emailInput = document.getElementById('email');
+  emailInput?.addEventListener('input', () => {
+    emailInput.closest('.form-group')?.classList.remove('error');
+  });
+  
+  // Global function for partner buttons
+  (window as any).selectPublisherMode = function() {
+    const publisherBtn = document.querySelector('.mode-btn[data-mode="publisher"]');
+    if (publisherBtn) (publisherBtn as HTMLButtonElement).click();
+  };
+</script>

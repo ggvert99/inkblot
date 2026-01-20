@@ -1,0 +1,43 @@
+---
+import SectionHeader from '@components/common/SectionHeader.astro';
+import PartnershipCard from '@components/cards/PartnershipCard.astro';
+import Button from '@components/common/Button.astro';
+
+const partnershipItems = [
+  {
+    icon: 'box',
+    title: 'Book Acquisition',
+    description: "Wholesale bulk purchase or consignment with guaranteed minimum. We make it easy to get your titles featured."
+  },
+  {
+    icon: 'heart',
+    title: 'What We Love',
+    description: 'Signed bookplates, author interviews, Q&As with subscribers, exclusive content that makes our boxes special.'
+  },
+  {
+    icon: 'megaphone',
+    title: 'What You Get',
+    description: 'Cross-promotion, social assets, post-campaign insights, and access to an engaged community of romance readers.'
+  }
+];
+---
+
+<section class="section section-partnership">
+  <div class="container">
+    <SectionHeader 
+      title="partnership model"
+      subtitle="Flexible options designed for indie publishers and authors"
+    />
+    
+    <div class="partnership-grid">
+      {partnershipItems.map((item) => (
+        <PartnershipCard {...item} />
+      ))}
+    </div>
+    
+    <div class="partnership-cta">
+      <p>Ready to get your books into the hands of readers who'll love them?</p>
+      <Button href="#join" variant="primary">Start the Conversation</Button>
+    </div>
+  </div>
+</section>

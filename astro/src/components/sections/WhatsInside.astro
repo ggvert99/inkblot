@@ -1,0 +1,49 @@
+---
+import SectionHeader from '@components/common/SectionHeader.astro';
+import BoxCard from '@components/cards/BoxCard.astro';
+
+const boxItems = [
+  {
+    icon: 'book',
+    title: 'indie romance books',
+    description: "1-2 carefully curated indie romance titles per box. Fresh voices, underrated gems, books that'll wreck you in the best way.",
+    tag: 'The main event'
+  },
+  {
+    icon: 'heart',
+    title: 'bookish goodies',
+    description: 'Bookmarks, candles, tea blends, cozy treats that match each theme.'
+  },
+  {
+    icon: 'document',
+    title: 'author extras',
+    description: 'Playlists, signed bookplates, handwritten notes.'
+  },
+  {
+    icon: 'community',
+    title: 'community access',
+    description: 'Dedicated forums, monthly book club sessions, and a space to connect with readers who truly get your obsession with romance.',
+    isWide: true
+  }
+];
+---
+
+<section class="section section-box" id="whats-inside">
+  <div class="container">
+    <SectionHeader 
+      title="what's in the box?"
+      subtitle="Every quarterly drop is packed with romance reader essentials"
+    />
+    
+    <div class="box-grid">
+      {boxItems.map((item) => (
+        <BoxCard {...item} />
+      ))}
+    </div>
+    
+    <div class="box-quote">
+      <p class="quote-text">"Like opening a love letter from your future favourite author"</p>
+      <span class="quote-attribution">— What we're going for</span>
+    </div>
+  </div>
+</section>

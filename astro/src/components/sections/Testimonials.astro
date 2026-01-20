@@ -1,0 +1,68 @@
+---
+import SectionHeader from '@components/common/SectionHeader.astro';
+import TestimonialCard from '@components/cards/TestimonialCard.astro';
+
+interface Testimonial {
+  quote: string;
+  author: string;
+  platform: string;
+}
+
+interface Props {
+  items?: Testimonial[];
+}
+
+const defaultTestimonials: Testimonial[] = [
+  {
+    quote: "Finally a subscription box that actually gets indie romance! Can't wait for the first drop",
+    author: '@bookish_emma',
+    platform: 'BookTok'
+  },
+  {
+    quote: 'The concept is everything. Curated indie picks + community? Sign me UP.',
+    author: '@romance.reads.uk',
+    platform: 'Instagram'
+  },
+  {
+    quote: "I've been waiting for something like this in the UK. No more missing out on US-only boxes!",
+    author: '@paiges_of_romance',
+    platform: 'BookTok'
+  },
+  {
+    quote: 'Supporting indie authors AND getting cozy goodies? This is literally my dream subscription',
+    author: '@theliterarylove',
+    platform: 'Instagram'
+  },
+  {
+    quote: 'The quarterly format is perfect. Actually gives me time to read before the next one arrives!',
+    author: '@readwithmia',
+    platform: 'BookTok'
+  },
+  {
+    quote: "As an indie author, I'm SO excited about this platform for discovery. Game changer!",
+    author: '@authorjessicahart',
+    platform: 'Author'
+  }
+];
+
+const { items = defaultTestimonials } = Astro.props;
+---
+
+<section class="section section-testimonials">
+  <div class="container">
+    <SectionHeader title="the buzz so far" />
+  </div>
+  
+  <div class="testimonials-wrapper">
+    <div class="testimonials-track">
+      <!-- First set -->
+      {items.map((testimonial) => (
+        <TestimonialCard {...testimonial} />
+      ))}
+      <!-- Duplicate for seamless loop -->
+      {items.map((testimonial) => (
+        <TestimonialCard {...testimonial} />
+      ))}
+    </div>
+  </div>
+</section>

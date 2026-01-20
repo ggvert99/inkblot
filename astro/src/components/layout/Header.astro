@@ -1,0 +1,64 @@
+---
+import Icon from '@components/common/Icon.astro';
+import Button from '@components/common/Button.astro';
+
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+const navItems: NavItem[] = [
+  { label: 'How it works', href: '#how-it-works' },
+  { label: "What's inside", href: '#whats-inside' },
+  { label: 'Community', href: '#community' },
+  { label: 'For publishers', href: '#publishers' },
+  { label: 'FAQ', href: '#faq' },
+];
+---
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-text">inkblot crew</span>
+      <span class="logo-tagline">indie romance finds you</span>
+    </a>
+    
+    <nav class="nav" id="nav">
+      <ul class="nav-list">
+        {navItems.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    
+    <div class="header-cta">
+      <Button href="#join" variant="primary">Join the Crew</Button>
+      <button class="header-icon-btn" id="cartBtn" aria-label="Shopping cart">
+        <Icon name="cart" size={22} />
+        <span class="cart-badge hidden">0</span>
+      </button>
+      <button class="header-icon-btn" id="loginBtn" aria-label="Login">
+        <Icon name="user" size={22} />
+      </button>
+    </div>
+    
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+</header>
+
+<script>
+  // Header scroll effect
+  const header = document.getElementById('header');
+  
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 50) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+</script>

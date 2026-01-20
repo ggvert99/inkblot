@@ -1,0 +1,86 @@
+---
+import SectionHeader from '@components/common/SectionHeader.astro';
+import Icon from '@components/common/Icon.astro';
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items?: FAQItem[];
+}
+
+const defaultItems: FAQItem[] = [
+  {
+    question: 'How do you acquire books?',
+    answer: "We work directly with indie publishers and authors! We either purchase wholesale in bulk or arrange consignment with a guaranteed minimum. This means authors get paid and readers get exclusive access to amazing indie titles."
+  },
+  {
+    question: 'How often do boxes ship?',
+    answer: "We're a quarterly subscription — that's four glorious boxes per year. Enough time to actually read your books (we know the TBR is real), but often enough to keep the cozy vibes coming."
+  },
+  {
+    question: 'Where do you ship?',
+    answer: "We're launching with the UK first! We want to make sure we nail the experience before expanding to other regions. Stay tuned for updates on international shipping."
+  },
+  {
+    question: "What's actually in the box?",
+    answer: "Each box includes 1-2 indie romance books (depending on your tier), plus bookish goodies like bookmarks, candles, tea blends, and more. You'll also get exclusive author content (playlists, notes, signed extras) and access to our subscriber community."
+  },
+  {
+    question: "What's the target audience?",
+    answer: "Romance readers who love discovering new voices! Whether you're deep in BookTok, active on Bookstagram, or just someone who devours love stories — if you want to find your next favourite before everyone else, you're our people."
+  },
+  {
+    question: 'How can publishers collaborate?',
+    answer: "We'd love to chat! Fill out the partner form below and tell us about your titles. We work with indie publishers, self-published authors, and literary agents to find the perfect books for our subscribers."
+  }
+];
+
+const { items = defaultItems } = Astro.props;
+---
+
+<section class="section section-faq" id="faq">
+  <div class="container">
+    <SectionHeader title="faq" />
+    
+    <div class="faq-list">
+      {items.map((item) => (
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>{item.question}</span>
+            <Icon name="plus" size={24} class="faq-icon" />
+          </button>
+          <div class="faq-answer">
+            <p>{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const faqItems = document.querySelectorAll('.faq-item');
+  
+  faqItems.forEach(item => {
+    const question = item.querySelector('.faq-question');
+    
+    question?.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      
+      // Close all items
+      faqItems.forEach(i => {
+        i.classList.remove('active');
+        i.querySelector('.faq-question')?.setAttribute('aria-expanded', 'false');
+      });
+      
+      // Open clicked item (if it wasn't already open)
+      if (!isActive) {
+        item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>

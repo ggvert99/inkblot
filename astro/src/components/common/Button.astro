@@ -1,0 +1,47 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'default' | 'lg';
+  href?: string;
+  full?: boolean;
+  icon?: string;
+  iconPosition?: 'left' | 'right';
+  class?: string;
+  type?: 'button' | 'submit';
+  disabled?: boolean;
+}
+
+const { 
+  variant = 'primary', 
+  size = 'default', 
+  href, 
+  full = false,
+  icon,
+  iconPosition = 'right',
+  class: className = '',
+  type = 'button',
+  disabled = false
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const classes = [
+  'btn',
+  `btn-${variant}`,
+  size === 'lg' && 'btn-lg',
+  full && 'btn-full',
+  className
+].filter(Boolean).join(' ');
+---
+
+<Tag 
+  href={href} 
+  class={classes}
+  type={!href ? type : undefined}
+  disabled={disabled}
+>
+  {icon && iconPosition === 'left' && <Icon name={icon} size={20} />}
+  <span class="btn-text"><slot /></span>
+  {icon && iconPosition === 'right' && <Icon name={icon} size={20} />}
+</Tag>

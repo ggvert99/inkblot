@@ -1,0 +1,39 @@
+---
+import SectionHeader from '@components/common/SectionHeader.astro';
+import StepCard from '@components/cards/StepCard.astro';
+
+const steps = [
+  {
+    number: '01',
+    title: 'Join the waitlist',
+    description: "Pop your email below and you'll be first to know when we launch. Early birds get special perks."
+  },
+  {
+    number: '02',
+    title: 'We reveal the theme',
+    description: "Each quarter has a different vibe — we'll tease the theme and drop window so you know what's coming."
+  },
+  {
+    number: '03',
+    title: 'Subscribe & receive',
+    description: 'Lock in your spot, and your perfectly curated box arrives at your door. Quarterly joy, delivered.'
+  },
+  {
+    number: '04',
+    title: 'Unbox & connect',
+    description: 'Dive into your reads, enjoy your goodies, and join the community chat to discuss all the feels.'
+  }
+];
+---
+
+<section class="section section-steps" id="how-it-works">
+  <div class="container">
+    <SectionHeader title="how it works" />
+    
+    <div class="steps-grid">
+      {steps.map((step) => (
+        <StepCard {...step} />
+      ))}
+    </div>
+  </div>
+</section>

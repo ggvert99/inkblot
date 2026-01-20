@@ -1,0 +1,46 @@
+---
+import Button from '@components/common/Button.astro';
+
+const navItems = [
+  { label: 'How it works', href: '#how-it-works' },
+  { label: "What's inside", href: '#whats-inside' },
+  { label: 'Community', href: '#community' },
+  { label: 'For publishers', href: '#publishers' },
+  { label: 'FAQ', href: '#faq' },
+];
+---
+
+<div class="mobile-menu" id="mobileMenu">
+  <nav class="mobile-nav">
+    <ul>
+      {navItems.map((item) => (
+        <li><a href={item.href}>{item.label}</a></li>
+      ))}
+    </ul>
+    <div class="mobile-cta">
+      <Button href="#join" variant="primary" full>Join the Crew</Button>
+      <Button href="#publishers" variant="ghost" full>Partner with us</Button>
+    </div>
+  </nav>
+</div>
+
+<script>
+  const menuBtn = document.getElementById('mobileMenuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  
+  menuBtn?.addEventListener('click', () => {
+    menuBtn.classList.toggle('active');
+    mobileMenu?.classList.toggle('active');
+    document.body.style.overflow = mobileMenu?.classList.contains('active') ? 'hidden' : '';
+  });
+  
+  // Close menu when clicking a link
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      menuBtn?.classList.remove('active');
+      mobileMenu?.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+</script>

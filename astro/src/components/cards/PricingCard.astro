@@ -1,0 +1,55 @@
+---
+import Button from '@components/common/Button.astro';
+import Icon from '@components/common/Icon.astro';
+
+interface Props {
+  name: string;
+  price: number;
+  period: string;
+  description: string;
+  features: string[];
+  featured?: boolean;
+  badge?: string;
+  buttonText?: string;
+  buttonVariant?: 'primary' | 'ghost';
+}
+
+const { 
+  name, 
+  price, 
+  period, 
+  description, 
+  features, 
+  featured = false,
+  badge,
+  buttonText = 'Join the Crew',
+  buttonVariant = 'primary'
+} = Astro.props;
+---
+
+<div class:list={['pricing-card', { 'pricing-card-featured': featured }]}>
+  {badge && <div class="pricing-badge">{badge}</div>}
+  
+  <h3 class="pricing-name">{name}</h3>
+  
+  <div class="pricing-price">
+    <span class="price-currency">£</span>
+    <span class="price-amount">{price}</span>
+    <span class="price-period">{period}</span>
+  </div>
+  
+  <p class="pricing-description">{description}</p>
+  
+  <ul class="pricing-features">
+    {features.map((feature) => (
+      <li>
+        <Icon name="check" size={20} class="check-icon" />
+        <Fragment set:html={feature} />
+      </li>
+    ))}
+  </ul>
+  
+  <Button href="#join" variant={buttonVariant} full>
+    {buttonText}
+  </Button>
+</div>

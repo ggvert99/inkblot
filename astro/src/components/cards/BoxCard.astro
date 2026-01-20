@@ -1,0 +1,48 @@
+---
+import Icon from '@components/common/Icon.astro';
+
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  tag?: string;
+  isWide?: boolean;
+}
+
+const { icon, title, description, tag, isWide = false } = Astro.props;
+---
+
+<div class:list={['box-card', { 'box-card-wide': isWide }]}>
+  <div class="box-card-icon">
+    <Icon name={icon} size={48} strokeWidth={1.5} />
+  </div>
+  <div class="box-card-content">
+    <h3>{title}</h3>
+    <p>{description}</p>
+    {tag && <div class="box-card-tag">{tag}</div>}
+  </div>
+</div>
+
+<style>
+  .box-card-wide {
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-6);
+    text-align: left;
+  }
+  
+  .box-card-wide .box-card-icon {
+    margin: 0;
+  }
+  
+  @media (max-width: 1023px) {
+    .box-card-wide {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .box-card-wide .box-card-icon {
+      margin: 0 auto var(--space-5);
+    }
+  }
+</style>

@@ -1,0 +1,143 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Button from '@components/common/Button.astro';
+import Icon from '@components/common/Icon.astro';
+---
+
+<Layout title="Thank You — Inkblot Crew">
+  <section class="thank-you-page">
+    <div class="container">
+      <div class="thank-you-content">
+        <div class="success-icon">
+          <Icon name="check-circle" size={80} />
+        </div>
+        
+        <h1>you're in!</h1>
+        <p class="lead">
+          Welcome to the Inkblot Crew! We'll email you when the first drop is ready.
+        </p>
+        
+        <div class="next-steps">
+          <h2>what happens next?</h2>
+          <ul>
+            <li>Check your inbox for a welcome email</li>
+            <li>Follow us on social for sneak peeks</li>
+            <li>Tell your bookish friends!</li>
+          </ul>
+        </div>
+        
+        <div class="share-section">
+          <p>Know someone who'd love this?</p>
+          <div class="share-buttons">
+            <a 
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent("I just joined the Inkblot Crew! Curated indie romance boxes coming soon. Join me:")}&url=${encodeURIComponent(Astro.url.origin)}`}
+              target="_blank"
+              class="share-btn"
+            >
+              Share on X
+            </a>
+            <button class="share-btn" id="copyLink">Copy link</button>
+          </div>
+        </div>
+        
+        <Button href="/" variant="ghost">Back to Home</Button>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .thank-you-page {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-16) var(--space-4);
+    text-align: center;
+  }
+  
+  .thank-you-content {
+    max-width: 500px;
+  }
+  
+  .success-icon {
+    color: var(--color-accent);
+    margin-bottom: var(--space-6);
+  }
+  
+  h1 {
+    font-size: var(--text-4xl);
+    margin-bottom: var(--space-4);
+  }
+  
+  .lead {
+    font-size: var(--text-xl);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-10);
+  }
+  
+  .next-steps {
+    background: var(--color-sweet);
+    padding: var(--space-6);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-8);
+    text-align: left;
+  }
+  
+  .next-steps h2 {
+    font-family: var(--font-body);
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin-bottom: var(--space-4);
+    text-transform: none;
+  }
+  
+  .next-steps li {
+    padding: var(--space-2) 0;
+    color: var(--color-text-secondary);
+  }
+  
+  .share-section {
+    margin-bottom: var(--space-8);
+  }
+  
+  .share-section p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-3);
+  }
+  
+  .share-buttons {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3);
+  }
+  
+  .share-btn {
+    padding: var(--space-2) var(--space-4);
+    background: var(--color-cream);
+    border: 1px solid var(--color-chocolate);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .share-btn:hover {
+    background: var(--color-chocolate);
+    color: var(--color-cream);
+  }
+</style>
+
+<script>
+  document.getElementById('copyLink')?.addEventListener('click', async () => {
+    const btn = document.getElementById('copyLink');
+    try {
+      await navigator.clipboard.writeText(window.location.origin);
+      if (btn) btn.textContent = 'Copied!';
+      setTimeout(() => { if (btn) btn.textContent = 'Copy link'; }, 2000);
+    } catch {
+      prompt('Copy this link:', window.location.origin);
+    }
+  });
+</script>

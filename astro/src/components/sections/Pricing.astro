@@ -1,0 +1,90 @@
+---
+import SectionHeader from '@components/common/SectionHeader.astro';
+import PricingCard from '@components/cards/PricingCard.astro';
+
+interface Plan {
+  name: string;
+  price: number;
+  period: string;
+  description: string;
+  features: string[];
+  featured?: boolean;
+  badge?: string;
+  buttonText?: string;
+  buttonVariant?: 'primary' | 'ghost';
+}
+
+interface Props {
+  plans?: Plan[];
+}
+
+const defaultPlans: Plan[] = [
+  {
+    name: 'try it once',
+    price: 42,
+    period: 'one-time',
+    description: 'Perfect if you want to try before committing',
+    features: [
+      '1 curated indie romance book',
+      '3-4 bookish goodies',
+      'Author exclusive content',
+      'No commitment',
+      'Free UK shipping'
+    ],
+    buttonText: 'Try a Box',
+    buttonVariant: 'ghost'
+  },
+  {
+    name: 'the book lover',
+    price: 45,
+    period: '/quarter',
+    description: "For those who can't choose just one book",
+    features: [
+      '<strong>2 curated indie romance books</strong>',
+      '5-6 premium bookish goodies',
+      'Author exclusive content',
+      'Priority community access',
+      'Free UK shipping',
+      'Early access to drops'
+    ],
+    featured: true,
+    badge: 'Best Value'
+  },
+  {
+    name: 'the cozy reader',
+    price: 38,
+    period: '/quarter',
+    description: 'Perfect for discovering your next favourite indie author',
+    features: [
+      '1 curated indie romance book',
+      '3-4 bookish goodies',
+      'Author exclusive content',
+      'Community access',
+      'Free UK shipping'
+    ],
+    badge: 'Most Popular'
+  }
+];
+
+const { plans = defaultPlans } = Astro.props;
+---
+
+<section class="section section-pricing" id="pricing">
+  <div class="container">
+    <SectionHeader 
+      title="simple, transparent pricing"
+      subtitle="Quarterly drops, no hidden fees. Cancel anytime."
+    />
+    
+    <div class="pricing-grid pricing-grid-3">
+      {plans.map((plan) => (
+        <PricingCard {...plan} />
+      ))}
+    </div>
+    
+    <p class="pricing-note">
+      Prices are estimates and may vary slightly at launch. 
+      Join the waitlist for early-bird pricing!
+    </p>
+  </div>
+</section>

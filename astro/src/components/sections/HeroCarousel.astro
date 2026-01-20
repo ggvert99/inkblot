@@ -1,0 +1,236 @@
+---
+import Button from '@components/common/Button.astro';
+import Badge from '@components/common/Badge.astro';
+import Icon from '@components/common/Icon.astro';
+
+interface Slide {
+  variant: 'centered' | 'bottom' | 'minimal' | 'split';
+  video: string;
+  label: string;
+  badge?: string;
+  title: string;
+  subtitle?: string;
+  buttonText?: string;
+  buttonHref?: string;
+}
+
+const slides: Slide[] = [
+  {
+    variant: 'centered',
+    video: '/images/text-to-video-9bd23aae.mp4',
+    label: 'Variant A',
+    badge: 'Sneak Peek',
+    title: 'experience the unboxing magic',
+    subtitle: 'Every box tells a story. Every story finds its reader.',
+    buttonText: 'Get Early Access',
+    buttonHref: '#join'
+  },
+  {
+    variant: 'bottom',
+    video: '/images/z_Upload-Image---Internal-Only-Style-097d5300.mp4',
+    label: 'Variant B',
+    title: 'your next obsession awaits',
+    subtitle: 'Curated with love. Delivered with care. Read with passion.',
+    buttonText: 'Join Now',
+    buttonHref: '#join'
+  },
+  {
+    variant: 'minimal',
+    video: '/images/text-to-video-9bd23aae.mp4',
+    label: 'Variant C',
+    title: '',
+    subtitle: 'Watch the magic unfold'
+  },
+  {
+    variant: 'split',
+    video: '/images/z_Upload-Image---Internal-Only-Style-097d5300.mp4',
+    label: 'Variant D',
+    badge: 'Behind the Scenes',
+    title: 'curated with love, delivered with care',
+    subtitle: 'From our hands to your happy place.',
+    buttonText: 'Join the Waitlist',
+    buttonHref: '#join'
+  }
+];
+---
+
+<section class="hero-carousel" id="hero-carousel">
+  <div class="hero-carousel-track" id="heroCarouselTrack">
+    {slides.map((slide, index) => (
+      <div class={`hero-slide hero-slide-${slide.variant}`} data-slide={index}>
+        <div class="hero-slide-bg">
+          <video autoplay muted loop playsinline>
+            <source src={slide.video} type="video/mp4" />
+          </video>
+          <div class={`hero-slide-overlay hero-slide-overlay-${slide.variant === 'centered' ? 'gradient' : slide.variant}`}></div>
+        </div>
+        <div class={`hero-slide-content hero-slide-content-${slide.variant}`}>
+          <span class="hero-slide-label">{slide.label}</span>
+          
+          {slide.variant === 'centered' && (
+            <>
+              {slide.badge && <span class="hero-slide-badge">{slide.badge}</span>}
+              <h2 class="hero-slide-title">{slide.title}</h2>
+              <p class="hero-slide-subtitle">{slide.subtitle}</p>
+              <Button href={slide.buttonHref} variant="primary" size="lg" icon="arrow-right">
+                {slide.buttonText}
+              </Button>
+            </>
+          )}
+          
+          {slide.variant === 'bottom' && (
+            <div class="hero-slide-bottom-inner">
+              <div class="hero-slide-bottom-text">
+                <h2 class="hero-slide-title">{slide.title}</h2>
+                <p class="hero-slide-subtitle">{slide.subtitle}</p>
+              </div>
+              <Button href={slide.buttonHref} variant="primary" size="lg">
+                {slide.buttonText}
+              </Button>
+            </div>
+          )}
+          
+          {slide.variant === 'minimal' && (
+            <>
+              <div class="hero-slide-play">
+                <Icon name="play" size={64} />
+              </div>
+              <span class="hero-slide-caption">{slide.subtitle}</span>
+              <div class="hero-slide-corner-badge">Coming 2026</div>
+            </>
+          )}
+          
+          {slide.variant === 'split' && (
+            <div class="hero-slide-split-text">
+              {slide.badge && <span class="hero-slide-badge hero-slide-badge-outline">{slide.badge}</span>}
+              <h2 class="hero-slide-title">{slide.title}</h2>
+              <p class="hero-slide-subtitle">{slide.subtitle}</p>
+              <Button href={slide.buttonHref} variant="ghost" size="lg" icon="arrow-right" class="hero-slide-btn-light">
+                {slide.buttonText}
+              </Button>
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  <!-- Navigation Arrows -->
+  <button class="hero-carousel-arrow hero-carousel-prev" id="carouselPrev" aria-label="Previous slide">
+    <Icon name="chevron-left" size={24} />
+  </button>
+  <button class="hero-carousel-arrow hero-carousel-next" id="carouselNext" aria-label="Next slide">
+    <Icon name="chevron-right" size={24} />
+  </button>
+  
+  <!-- Dots Navigation -->
+  <div class="hero-carousel-dots" id="carouselDots">
+    {slides.map((_, index) => (
+      <button 
+        class:list={['hero-carousel-dot', { active: index === 0 }]} 
+        data-slide={index} 
+        aria-label={`Go to slide ${index + 1}`}
+      ></button>
+    ))}
+  </div>
+  
+  <!-- Slide Counter -->
+  <div class="hero-carousel-counter">
+    <span id="currentSlide">01</span>
+    <span class="counter-divider">/</span>
+    <span id="totalSlides">{String(slides.length).padStart(2, '0')}</span>
+  </div>
+</section>
+
+<script>
+  const carousel = document.getElementById('hero-carousel');
+  if (carousel) {
+    const track = document.getElementById('heroCarouselTrack');
+    const slides = track?.querySelectorAll('.hero-slide');
+    const prevBtn = document.getElementById('carouselPrev');
+    const nextBtn = document.getElementById('carouselNext');
+    const dots = document.querySelectorAll('.hero-carousel-dot');
+    const currentSlideEl = document.getElementById('currentSlide');
+    
+    let currentSlide = 0;
+    const totalSlides = slides?.length || 0;
+    let isTransitioning = false;
+    let autoplayInterval: ReturnType<typeof setInterval>;
+    
+    function goToSlide(index: number, animate = true) {
+      if (isTransitioning || !track) return;
+      
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      
+      isTransitioning = true;
+      currentSlide = index;
+      
+      track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+      
+      if (currentSlideEl) {
+        currentSlideEl.textContent = String(currentSlide + 1).padStart(2, '0');
+      }
+      
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 600);
+    }
+    
+    function nextSlide() { goToSlide(currentSlide + 1); }
+    function prevSlide() { goToSlide(currentSlide - 1); }
+    
+    function resetAutoplay() {
+      clearInterval(autoplayInterval);
+      startAutoplay();
+    }
+    
+    function startAutoplay() {
+      autoplayInterval = setInterval(() => {
+        const rect = carousel.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          nextSlide();
+        }
+      }, 6000);
+    }
+    
+    nextBtn?.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+    prevBtn?.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+    
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => { goToSlide(index); resetAutoplay(); });
+    });
+    
+    // Touch support
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    carousel.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) {
+        diff > 0 ? nextSlide() : prevSlide();
+        resetAutoplay();
+      }
+    }, { passive: true });
+    
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      const rect = carousel.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        if (e.key === 'ArrowLeft') { prevSlide(); resetAutoplay(); }
+        if (e.key === 'ArrowRight') { nextSlide(); resetAutoplay(); }
+      }
+    });
+    
+    // Pause on hover
+    carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+    carousel.addEventListener('mouseleave', startAutoplay);
+    
+    goToSlide(0, false);
+    startAutoplay();
+  }
+</script>

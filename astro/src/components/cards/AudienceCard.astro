@@ -1,0 +1,52 @@
+---
+import Button from '@components/common/Button.astro';
+import Icon from '@components/common/Icon.astro';
+
+interface Props {
+  title: string;
+  lead: string;
+  items: string[];
+  promise: string;
+  buttonText: string;
+  buttonHref: string;
+  buttonVariant?: 'primary' | 'secondary';
+  variant?: 'readers' | 'publishers';
+}
+
+const { 
+  title, 
+  lead, 
+  items, 
+  promise, 
+  buttonText, 
+  buttonHref,
+  buttonVariant = 'primary',
+  variant = 'readers'
+} = Astro.props;
+---
+
+<div class:list={['audience-card', `audience-${variant}`]}>
+  <div class="audience-header">
+    <h3>{title}</h3>
+  </div>
+  <div class="audience-content">
+    <p class="audience-lead">{lead}</p>
+    
+    <ul class="audience-list">
+      {items.map((item) => (
+        <li>
+          <span class="check-icon">
+            <Icon name="check" size={16} />
+          </span>
+          {item}
+        </li>
+      ))}
+    </ul>
+    
+    <p class="audience-promise">{promise}</p>
+    
+    <Button href={buttonHref} variant={buttonVariant}>
+      {buttonText}
+    </Button>
+  </div>
+</div>

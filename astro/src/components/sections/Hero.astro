@@ -1,0 +1,119 @@
+---
+import Button from '@components/common/Button.astro';
+import Badge from '@components/common/Badge.astro';
+---
+
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-texture"></div>
+  </div>
+  
+  <div class="container hero-content">
+    <div class="hero-text">
+      <Badge>Coming Early 2026</Badge>
+      <h1 class="hero-headline">where undiscovered love stories meet their readers.</h1>
+      <p class="hero-subhead">
+        A quarterly subscription box spotlighting indie romance gems — 
+        books, goodies, author extras, and a cozy community.
+      </p>
+      
+      <div class="hero-proof">
+        <span class="proof-item">UK delivery</span>
+        <span class="proof-divider">•</span>
+        <span class="proof-item">Quarterly drops</span>
+      </div>
+      
+      <div class="hero-cta">
+        <Button href="#join" variant="primary" size="lg" icon="arrow-right">
+          Join the Crew
+        </Button>
+        <Button href="#whats-inside" variant="ghost" size="lg">
+          See what's inside
+        </Button>
+      </div>
+    </div>
+    
+    <div class="hero-visual" id="heroVisual">
+      <div class="hero-illustration">
+        <div class="hero-card hero-card-1" data-depth="0.4">
+          <div class="hero-card-glow"></div>
+          <div class="hero-card-inner">
+            <span class="hero-card-text">Curated picks</span>
+          </div>
+        </div>
+        <div class="hero-card hero-card-2" data-depth="0.3">
+          <div class="hero-card-glow"></div>
+          <div class="hero-card-inner">
+            <span class="hero-card-text">Author extras</span>
+          </div>
+        </div>
+        <div class="hero-card hero-card-3" data-depth="0.5">
+          <div class="hero-card-glow"></div>
+          <div class="hero-card-inner">
+            <span class="hero-card-text">Cozy goodies</span>
+          </div>
+        </div>
+        <div class="hero-card hero-card-4" data-depth="0.35">
+          <div class="hero-card-glow"></div>
+          <div class="hero-card-inner">
+            <span class="hero-card-text">Community</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Hero parallax effect
+  const heroVisual = document.getElementById('heroVisual');
+  if (heroVisual) {
+    const cards = heroVisual.querySelectorAll('.hero-card');
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isHovering = false;
+    
+    function lerp(start: number, end: number, factor: number) {
+      return start + (end - start) * factor;
+    }
+    
+    heroVisual.addEventListener('mousemove', (e) => {
+      const rect = heroVisual.getBoundingClientRect();
+      mouseX = (e.clientX - rect.left - rect.width / 2) / rect.width;
+      mouseY = (e.clientY - rect.top - rect.height / 2) / rect.height;
+      isHovering = true;
+    });
+    
+    heroVisual.addEventListener('mouseleave', () => {
+      isHovering = false;
+    });
+    
+    function animate() {
+      const factor = isHovering ? 0.08 : 0.05;
+      currentX = lerp(currentX, isHovering ? mouseX : 0, factor);
+      currentY = lerp(currentY, isHovering ? mouseY : 0, factor);
+      
+      cards.forEach(card => {
+        const el = card as HTMLElement;
+        const depth = parseFloat(el.dataset.depth || '0.3');
+        const moveX = currentX * 40 * depth;
+        const moveY = currentY * 30 * depth;
+        const rotateX = currentY * 10 * depth;
+        const rotateY = -currentX * 10 * depth;
+        
+        el.style.transform = `
+          translate(${moveX}px, ${moveY}px)
+          rotateX(${rotateX}deg)
+          rotateY(${rotateY}deg)
+        `;
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  }
+</script>
