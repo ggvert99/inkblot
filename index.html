@@ -239,102 +239,123 @@
         
     </section>
 
-    <!-- Video Hero Showcase - Different Design Variants -->
-    <section class="video-showcase" id="video-showcase">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Design Variants</span>
-                <h2 class="section-title">video hero options</h2>
-                <p class="section-subtitle">Compare different layouts for the video cover section</p>
+    <!-- Hero Carousel -->
+    <section class="hero-carousel" id="hero-carousel">
+        <div class="hero-carousel-track" id="heroCarouselTrack">
+            
+            <!-- Slide 1: Centered -->
+            <div class="hero-slide hero-slide-centered" data-slide="0">
+                <div class="hero-slide-bg">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/text-to-video-9bd23aae.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-slide-overlay hero-slide-overlay-gradient"></div>
+                </div>
+                <div class="hero-slide-content hero-slide-content-center">
+                    <span class="hero-slide-label">Variant A</span>
+                    <span class="hero-slide-badge">Sneak Peek</span>
+                    <h2 class="hero-slide-title">experience the unboxing magic</h2>
+                    <p class="hero-slide-subtitle">Every box tells a story. Every story finds its reader.</p>
+                    <a href="#join" class="btn btn-primary btn-lg">
+                        <span>Get Early Access</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
             
-            <div class="video-showcase-grid">
-                
-                <!-- Variant 1: Centered (Original) -->
-                <div class="video-card video-card-centered">
-                    <div class="video-card-label">Variant A: Centered</div>
-                    <div class="video-card-inner">
-                        <div class="video-card-bg">
-                            <video autoplay muted loop playsinline>
-                                <source src="images/text-to-video-9bd23aae.mp4" type="video/mp4">
-                            </video>
-                            <div class="video-card-overlay video-card-overlay-gradient"></div>
+            <!-- Slide 2: Bottom Text -->
+            <div class="hero-slide hero-slide-bottom" data-slide="1">
+                <div class="hero-slide-bg">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/z_Upload-Image---Internal-Only-Style-097d5300.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-slide-overlay hero-slide-overlay-bottom"></div>
+                </div>
+                <div class="hero-slide-content hero-slide-content-bottom">
+                    <span class="hero-slide-label">Variant B</span>
+                    <div class="hero-slide-bottom-inner">
+                        <div class="hero-slide-bottom-text">
+                            <h2 class="hero-slide-title">your next obsession awaits</h2>
+                            <p class="hero-slide-subtitle">Curated with love. Delivered with care. Read with passion.</p>
                         </div>
-                        <div class="video-card-content video-card-content-center">
-                            <span class="video-card-badge">Sneak Peek</span>
-                            <h3 class="video-card-title">experience the unboxing magic</h3>
-                            <p class="video-card-subtitle">Every box tells a story. Every story finds its reader.</p>
-                            <a href="#join" class="btn btn-primary">Get Early Access</a>
-                        </div>
+                        <a href="#join" class="btn btn-primary btn-lg">Join Now</a>
                     </div>
                 </div>
-                
-                <!-- Variant 2: Bottom Text (Focus on Video) -->
-                <div class="video-card video-card-bottom">
-                    <div class="video-card-label">Variant B: Bottom Text</div>
-                    <div class="video-card-inner">
-                        <div class="video-card-bg">
-                            <video autoplay muted loop playsinline>
-                                <source src="images/z_Upload-Image---Internal-Only-Style-097d5300.mp4" type="video/mp4">
-                            </video>
-                            <div class="video-card-overlay video-card-overlay-bottom"></div>
-                        </div>
-                        <div class="video-card-content video-card-content-bottom">
-                            <div class="video-card-text-row">
-                                <div class="video-card-text-left">
-                                    <h3 class="video-card-title">your next obsession awaits</h3>
-                                    <p class="video-card-subtitle">Curated with love. Delivered with care.</p>
-                                </div>
-                                <a href="#join" class="btn btn-primary">Join Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Variant 3: Minimal (Play Focus) -->
-                <div class="video-card video-card-minimal">
-                    <div class="video-card-label">Variant C: Minimal</div>
-                    <div class="video-card-inner">
-                        <div class="video-card-bg">
-                            <video autoplay muted loop playsinline>
-                                <source src="images/text-to-video-9bd23aae.mp4" type="video/mp4">
-                            </video>
-                            <div class="video-card-overlay video-card-overlay-minimal"></div>
-                        </div>
-                        <div class="video-card-content video-card-content-minimal">
-                            <div class="video-card-play-btn">
-                                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                                    <polygon points="5,3 19,12 5,21"/>
-                                </svg>
-                            </div>
-                            <span class="video-card-caption">Watch the magic unfold</span>
-                        </div>
-                        <div class="video-card-corner-badge">Coming 2026</div>
-                    </div>
-                </div>
-                
-                <!-- Variant 4: Split Layout -->
-                <div class="video-card video-card-split">
-                    <div class="video-card-label">Variant D: Split</div>
-                    <div class="video-card-inner">
-                        <div class="video-card-bg">
-                            <video autoplay muted loop playsinline>
-                                <source src="images/z_Upload-Image---Internal-Only-Style-097d5300.mp4" type="video/mp4">
-                            </video>
-                            <div class="video-card-overlay video-card-overlay-split"></div>
-                        </div>
-                        <div class="video-card-content video-card-content-split">
-                            <div class="video-card-split-text">
-                                <span class="video-card-badge video-card-badge-outline">Behind the Scenes</span>
-                                <h3 class="video-card-title">curated with love</h3>
-                                <p class="video-card-subtitle">From our hands to your happy place.</p>
-                                <a href="#join" class="btn btn-ghost video-card-btn-light">Join the Waitlist</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
             </div>
+            
+            <!-- Slide 3: Minimal -->
+            <div class="hero-slide hero-slide-minimal" data-slide="2">
+                <div class="hero-slide-bg">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/text-to-video-9bd23aae.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-slide-overlay hero-slide-overlay-minimal"></div>
+                </div>
+                <div class="hero-slide-content hero-slide-content-minimal">
+                    <span class="hero-slide-label">Variant C</span>
+                    <div class="hero-slide-play">
+                        <svg width="64" height="64" viewBox="0 0 24 24" fill="currentColor">
+                            <polygon points="5,3 19,12 5,21"/>
+                        </svg>
+                    </div>
+                    <span class="hero-slide-caption">Watch the magic unfold</span>
+                </div>
+                <div class="hero-slide-corner-badge">Coming 2026</div>
+            </div>
+            
+            <!-- Slide 4: Split -->
+            <div class="hero-slide hero-slide-split" data-slide="3">
+                <div class="hero-slide-bg">
+                    <video autoplay muted loop playsinline>
+                        <source src="images/z_Upload-Image---Internal-Only-Style-097d5300.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-slide-overlay hero-slide-overlay-split"></div>
+                </div>
+                <div class="hero-slide-content hero-slide-content-split">
+                    <span class="hero-slide-label">Variant D</span>
+                    <div class="hero-slide-split-text">
+                        <span class="hero-slide-badge hero-slide-badge-outline">Behind the Scenes</span>
+                        <h2 class="hero-slide-title">curated with love, delivered with care</h2>
+                        <p class="hero-slide-subtitle">From our hands to your happy place.</p>
+                        <a href="#join" class="btn btn-ghost hero-slide-btn-light btn-lg">
+                            <span>Join the Waitlist</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M5 12h14M12 5l7 7-7 7"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+        <!-- Navigation Arrows -->
+        <button class="hero-carousel-arrow hero-carousel-prev" id="carouselPrev" aria-label="Previous slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M15 18l-6-6 6-6"/>
+            </svg>
+        </button>
+        <button class="hero-carousel-arrow hero-carousel-next" id="carouselNext" aria-label="Next slide">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M9 18l6-6-6-6"/>
+            </svg>
+        </button>
+        
+        <!-- Dots Navigation -->
+        <div class="hero-carousel-dots" id="carouselDots">
+            <button class="hero-carousel-dot active" data-slide="0" aria-label="Go to slide 1"></button>
+            <button class="hero-carousel-dot" data-slide="1" aria-label="Go to slide 2"></button>
+            <button class="hero-carousel-dot" data-slide="2" aria-label="Go to slide 3"></button>
+            <button class="hero-carousel-dot" data-slide="3" aria-label="Go to slide 4"></button>
+        </div>
+        
+        <!-- Slide Counter -->
+        <div class="hero-carousel-counter">
+            <span id="currentSlide">01</span>
+            <span class="counter-divider">/</span>
+            <span id="totalSlides">04</span>
         </div>
     </section>
 
