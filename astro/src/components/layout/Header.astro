@@ -7,6 +7,8 @@ interface NavItem {
   href: string;
 }
 
+const base = import.meta.env.BASE_URL;
+
 const navItems: NavItem[] = [
   { label: 'How it works', href: '#how-it-works' },
   { label: "What's inside", href: '#whats-inside' },
@@ -18,7 +20,7 @@ const navItems: NavItem[] = [
 
 <header class="header" id="header">
   <div class="container header-inner">
-    <a href="/" class="logo">
+    <a href={base} class="logo">
       <span class="logo-text">inkblot crew</span>
       <span class="logo-tagline">indie romance finds you</span>
     </a>

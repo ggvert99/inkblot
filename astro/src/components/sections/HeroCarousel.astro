@@ -3,6 +3,8 @@ import Button from '@components/common/Button.astro';
 import Badge from '@components/common/Badge.astro';
 import Icon from '@components/common/Icon.astro';
 
+const base = import.meta.env.BASE_URL;
+
 interface Slide {
   variant: 'centered' | 'bottom' | 'minimal' | 'split';
   video: string;
@@ -17,7 +19,7 @@ interface Slide {
 const slides: Slide[] = [
   {
     variant: 'centered',
-    video: '/images/text-to-video-9bd23aae.mp4',
+    video: `${base}images/text-to-video-9bd23aae.mp4`,
     label: 'Variant A',
     badge: 'Sneak Peek',
     title: 'experience the unboxing magic',
@@ -27,7 +29,7 @@ const slides: Slide[] = [
   },
   {
     variant: 'bottom',
-    video: '/images/z_Upload-Image---Internal-Only-Style-097d5300.mp4',
+    video: `${base}images/z_Upload-Image---Internal-Only-Style-097d5300.mp4`,
     label: 'Variant B',
     title: 'your next obsession awaits',
     subtitle: 'Curated with love. Delivered with care. Read with passion.',
@@ -36,14 +38,14 @@ const slides: Slide[] = [
   },
   {
     variant: 'minimal',
-    video: '/images/text-to-video-9bd23aae.mp4',
+    video: `${base}images/text-to-video-9bd23aae.mp4`,
     label: 'Variant C',
     title: '',
     subtitle: 'Watch the magic unfold'
   },
   {
     variant: 'split',
-    video: '/images/z_Upload-Image---Internal-Only-Style-097d5300.mp4',
+    video: `${base}images/z_Upload-Image---Internal-Only-Style-097d5300.mp4`,
     label: 'Variant D',
     badge: 'Behind the Scenes',
     title: 'curated with love, delivered with care',

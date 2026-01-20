@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: 'Radio Newsman';
-  src: url('/fonts/RadioNewsman.ttf') format('truetype');
+  src: url('/inkblot/fonts/RadioNewsman.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -12,7 +12,7 @@
 
 @font-face {
   font-family: 'LazyDog';
-  src: url('/fonts/lazy_dog.ttf') format('truetype');
+  src: url('/inkblot/fonts/lazy_dog.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
