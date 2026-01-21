@@ -407,7 +407,7 @@
 
 /* Main Feature Card */
 .bento-main {
-  background: linear-gradient(135deg, var(--color-chocolate) 0%, #5a2329 100%);
+  background: linear-gradient(135deg, var(--color-aubergine) 0%, #4a3549 100%);
   color: var(--color-cream);
 }
 
@@ -596,7 +596,7 @@
 
 /* Quote Card */
 .bento-quote {
-  background: var(--color-chocolate);
+  background: var(--color-aubergine);
   color: var(--color-cream);
   display: flex;
   align-items: center;

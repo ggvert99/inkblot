@@ -240,7 +240,7 @@
 
 /* Main Card - Dark, spans 2 columns */
 .step-bento-main {
-  background: linear-gradient(135deg, var(--color-chocolate) 0%, #5a2329 100%);
+  background: linear-gradient(135deg, var(--color-aubergine) 0%, #4a3549 100%);
   color: var(--color-cream);
 }
 
