@@ -444,7 +444,7 @@
 
 .bento-main p {
   font-size: var(--text-lg);
-  opacity: 0.85;
+  color: var(--color-bittersweet);
   line-height: 1.7;
   margin-bottom: var(--space-6);
   max-width: 500px;
@@ -517,22 +517,22 @@
 }
 
 .bento-icon-sweet {
-  background: linear-gradient(135deg, var(--color-sweet) 0%, rgba(251, 222, 156, 0.6) 100%);
+  background: var(--color-sweet);
   color: var(--color-chocolate);
 }
 
 .bento-icon-bittersweet {
-  background: linear-gradient(135deg, var(--color-bittersweet) 0%, rgba(234, 157, 174, 0.6) 100%);
+  background: var(--color-bittersweet);
   color: var(--color-chocolate);
 }
 
 .bento-icon-aubergine {
-  background: linear-gradient(135deg, var(--color-aubergine) 0%, rgba(102, 74, 101, 0.6) 100%);
+  background: var(--color-chocolate);
   color: var(--color-cream);
 }
 
 .bento-main .bento-icon-sweet {
-  background: rgba(251, 222, 156, 0.2);
+  background: rgba(251, 222, 156, 0.25);
   color: var(--color-sweet);
 }
 
@@ -596,7 +596,7 @@
 
 /* Quote Card */
 .bento-quote {
-  background: var(--color-aubergine);
+  background: var(--color-chocolate);
   color: var(--color-cream);
   display: flex;
   align-items: center;
@@ -619,9 +619,21 @@
   font-family: var(--font-accent);
   font-size: var(--text-xl);
   font-style: italic;
-  line-height: 1.5;
+  line-height: 1.6;
   position: relative;
   z-index: 1;
+}
+
+.bento-quote blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -0.3em;
+  left: -0.4em;
+  font-size: 3em;
+  color: var(--color-bittersweet);
+  opacity: 0.4;
+  font-family: Georgia, serif;
+  line-height: 1;
 }
 
 @media (min-width: 768px) {
@@ -632,14 +644,14 @@
 
 .bento-quote-accent {
   position: absolute;
-  top: var(--space-4);
-  right: var(--space-4);
-  width: 80px;
-  height: 80px;
-  background: var(--color-bittersweet);
+  bottom: -20px;
+  right: -20px;
+  width: 120px;
+  height: 120px;
+  background: var(--color-terracotta);
   border-radius: 50%;
-  opacity: 0.2;
-  filter: blur(30px);
+  opacity: 0.15;
+  filter: blur(40px);
 }
 
 /* About CTA */
