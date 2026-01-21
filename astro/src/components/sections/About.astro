@@ -1,53 +1,98 @@
 ---
-import SectionHeader from '@components/common/SectionHeader.astro';
-import FeatureCard from '@components/cards/FeatureCard.astro';
+import Icon from '@components/common/Icon.astro';
+import Button from '@components/common/Button.astro';
 
 const features = [
   {
     icon: 'book',
     title: 'Curated indie picks',
-    description: "Hand-selected romance gems from indie authors you'll fall head over heels for."
+    description: "Hand-selected romance gems from indie authors you'll fall head over heels for.",
+    accent: 'sweet'
   },
   {
     icon: 'heart',
     title: 'Unboxing magic',
-    description: 'That "surprise self-treat" energy — every box is a cozy little celebration.'
+    description: 'That "surprise self-treat" energy — every box is a cozy little celebration.',
+    accent: 'bittersweet'
   },
   {
     icon: 'community',
     title: 'Community chat',
-    description: "Monthly book club sessions and forums where we ugly-cry together. No spoilers until we're all ready!"
+    description: "Monthly book club sessions and forums where we ugly-cry together. No spoilers until we're all ready!",
+    accent: 'aubergine'
   }
 ];
 ---
 
-<section class="section section-about" id="about">
+<section class="section about" id="about">
   <div class="container">
-    <SectionHeader title="what is inkblot crew?" />
-    
-    <div class="about-content">
-      <div class="about-text">
-        <h3 class="about-subheading">
-          Once a quarter, we spotlight fresh voices and underrated love stories 
-          that deserve way more attention than they're getting. We're obsessed 
-          with indie romance — the kind that makes you stay up way too late and 
-          ugly-cry on the tube.
-        </h3>
+    <!-- Header -->
+    <div class="about-header">
+      <span class="about-eyebrow">What is Inkblot Crew?</span>
+      <h2 class="about-title">
+        We spotlight <span class="text-accent">fresh voices</span> and underrated love stories that deserve way more attention
+      </h2>
+    </div>
+
+    <!-- Bento Grid -->
+    <div class="about-bento">
+      <!-- Main Feature Card -->
+      <div class="bento-card bento-main">
+        <div class="bento-card-content">
+          <div class="bento-icon bento-icon-sweet">
+            <Icon name="sparkles" size={28} strokeWidth={1.5} />
+          </div>
+          <h3>A quarterly surprise that lands on your doorstep</h3>
+          <p>New books, bookish goodies, exclusive author content, and a community of readers who get it. Think of it as a surprise self-treat four times a year.</p>
+          <div class="bento-tags">
+            <span class="bento-tag">UK delivery</span>
+            <span class="bento-tag">Quarterly drops</span>
+          </div>
+        </div>
+        <div class="bento-card-visual">
+          <div class="bento-visual-orb bento-visual-orb-1"></div>
+          <div class="bento-visual-orb bento-visual-orb-2"></div>
+        </div>
       </div>
-      
-      <div class="about-features">
-        {features.map((feature) => (
-          <FeatureCard {...feature} />
-        ))}
+
+      <!-- Feature Cards -->
+      {features.map((feature, index) => (
+        <div class={`bento-card bento-feature bento-feature-${index + 1}`}>
+          <div class={`bento-icon bento-icon-${feature.accent}`}>
+            <Icon name={feature.icon} size={24} strokeWidth={1.5} />
+          </div>
+          <h4>{feature.title}</h4>
+          <p>{feature.description}</p>
+        </div>
+      ))}
+
+      <!-- Stats Card -->
+      <div class="bento-card bento-stats">
+        <div class="bento-stat">
+          <span class="stat-number">4x</span>
+          <span class="stat-label">boxes per year</span>
+        </div>
+        <div class="bento-stat-divider"></div>
+        <div class="bento-stat">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">indie authors</span>
+        </div>
       </div>
-      
-      <div class="about-text">
-        <h3 class="about-subheading">
-          Think of it as a surprise self-treat that lands on your doorstep four 
-          times a year. New books, bookish goodies, exclusive author content, 
-          and a community of readers who get it.
-        </h3>
+
+      <!-- Quote Card -->
+      <div class="bento-card bento-quote">
+        <blockquote>
+          "The kind of books that make you stay up way too late and ugly-cry on the tube."
+        </blockquote>
+        <div class="bento-quote-accent"></div>
       </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="about-cta">
+      <Button href="#join" variant="primary" size="lg" icon="arrow-right">
+        Join the Crew
+      </Button>
     </div>
   </div>
 </section>
