@@ -12,6 +12,7 @@ interface Props {
   badge?: string;
   buttonText?: string;
   buttonVariant?: 'primary' | 'ghost';
+  variant?: 'default' | 'accent' | 'pink';
 }
 
 const { 
@@ -23,11 +24,15 @@ const {
   featured = false,
   badge,
   buttonText = 'Join the Crew',
-  buttonVariant = 'primary'
+  buttonVariant = 'primary',
+  variant = 'default'
 } = Astro.props;
+
+const variantClass = `pricing-card-${variant}`;
 ---
 
-<div class:list={['pricing-card', { 'pricing-card-featured': featured }]}>
+<div class:list={['pricing-card', variantClass, { 'pricing-card-featured': featured }]}>
+  {featured && <div class="pricing-card-glow" />}
   {badge && <div class="pricing-badge">{badge}</div>}
   
   <h3 class="pricing-name">{name}</h3>
@@ -44,7 +49,7 @@ const {
     {features.map((feature) => (
       <li>
         <Icon name="check" size={20} class="check-icon" />
-        <Fragment set:html={feature} />
+        <span>{feature}</span>
       </li>
     ))}
   </ul>

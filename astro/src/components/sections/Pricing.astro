@@ -12,6 +12,7 @@ interface Plan {
   badge?: string;
   buttonText?: string;
   buttonVariant?: 'primary' | 'ghost';
+  variant?: 'default' | 'accent' | 'pink';
 }
 
 interface Props {
@@ -27,12 +28,11 @@ const defaultPlans: Plan[] = [
     features: [
       '1 curated indie romance book',
       '3-4 bookish goodies',
-      'Author exclusive content',
-      'No commitment',
       'Free UK shipping'
     ],
     buttonText: 'Try a Box',
-    buttonVariant: 'ghost'
+    buttonVariant: 'ghost',
+    variant: 'default'
   },
   {
     name: 'the book lover',
@@ -40,15 +40,13 @@ const defaultPlans: Plan[] = [
     period: '/quarter',
     description: "For those who can't choose just one book",
     features: [
-      '<strong>2 curated indie romance books</strong>',
+      '2 curated indie romance books',
       '5-6 premium bookish goodies',
-      'Author exclusive content',
-      'Priority community access',
-      'Free UK shipping',
       'Early access to drops'
     ],
     featured: true,
-    badge: 'Best Value'
+    badge: 'Best Value',
+    variant: 'accent'
   },
   {
     name: 'the cozy reader',
@@ -58,11 +56,10 @@ const defaultPlans: Plan[] = [
     features: [
       '1 curated indie romance book',
       '3-4 bookish goodies',
-      'Author exclusive content',
-      'Community access',
-      'Free UK shipping'
+      'Community access'
     ],
-    badge: 'Most Popular'
+    badge: 'Most Popular',
+    variant: 'pink'
   }
 ];
 
