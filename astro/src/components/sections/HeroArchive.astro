@@ -1,0 +1,383 @@
+---
+/**
+ * HeroArchive.astro
+ * 
+ * АРХИВНЫЙ ФАЙЛ — содержит старые версии Hero секций, которые не используются на сайте.
+ * Сохранены для возможного использования в будущем.
+ * 
+ * Содержит:
+ * 1. HeroCards — версия с параллакс-карточками
+ * 2. HeroCarousel — карусель с 4 вариантами видео-слайдов
+ */
+
+import Button from '@components/common/Button.astro';
+import Badge from '@components/common/Badge.astro';
+import Icon from '@components/common/Icon.astro';
+
+const base = import.meta.env.BASE_URL;
+
+// ============================================================================
+// HERO CAROUSEL DATA
+// ============================================================================
+
+interface Slide {
+  variant: 'centered' | 'bottom' | 'minimal' | 'split';
+  video: string;
+  label: string;
+  badge?: string;
+  title: string;
+  subtitle?: string;
+  buttonText?: string;
+  buttonHref?: string;
+}
+
+const slides: Slide[] = [
+  {
+    variant: 'centered',
+    video: `${base}/images/text-to-video-9bd23aae.mp4`,
+    label: 'Variant A',
+    badge: 'Sneak Peek',
+    title: 'experience the unboxing magic',
+    subtitle: 'Every box tells a story. Every story finds its reader.',
+    buttonText: 'Get Early Access',
+    buttonHref: '#join'
+  },
+  {
+    variant: 'bottom',
+    video: `${base}/images/z_Upload-Image---Internal-Only-Style-097d5300.mp4`,
+    label: 'Variant B',
+    title: 'your next obsession awaits',
+    subtitle: 'Curated with love. Delivered with care. Read with passion.',
+    buttonText: 'Join Now',
+    buttonHref: '#join'
+  },
+  {
+    variant: 'minimal',
+    video: `${base}/images/text-to-video-9bd23aae.mp4`,
+    label: 'Variant C',
+    title: '',
+    subtitle: 'Watch the magic unfold'
+  },
+  {
+    variant: 'split',
+    video: `${base}/images/z_Upload-Image---Internal-Only-Style-097d5300.mp4`,
+    label: 'Variant D',
+    badge: 'Behind the Scenes',
+    title: 'curated with love, delivered with care',
+    subtitle: 'From our hands to your happy place.',
+    buttonText: 'Join the Waitlist',
+    buttonHref: '#join'
+  }
+];
+---
+
+<!-- ============================================================================
+     VARIANT 1: HERO CARDS (Parallax)
+     Текстовая hero с параллакс-карточками
+     ============================================================================ -->
+
+<section class="hero hero-cards-variant" style="display: none;">
+  <div class="hero-bg">
+    <div class="hero-texture"></div>
+  </div>
+  
+  <div class="container hero-content">
+    <div class="hero-text">
+      <Badge>Coming Early 2026</Badge>
+      <h1 class="hero-headline">where undiscovered love stories meet their readers.</h1>
+      <p class="hero-subhead">
+        A quarterly subscription box spotlighting indie romance gems — 
+        books, goodies, author extras, and a cozy community.
+      </p>
+      
+      <div class="hero-proof">
+        <span class="proof-item">UK delivery</span>
+        <span class="proof-divider">•</span>
+        <span class="proof-item">Quarterly drops</span>
+      </div>
+      
+      <div class="hero-cta">
+        <Button href="#join" variant="primary" size="lg" icon="arrow-right">
+          Join the Crew
+        </Button>
+        <Button href="#whats-inside" variant="ghost" size="lg">
+          See what's inside
+        </Button>
+      </div>
+    </div>
+    
+    <div class="hero-visual" id="heroVisualArchive">
+      <div class="hero-illustration">
+        <div class="hero-card hero-card-1" data-depth="0.4">
+          <div class="hero-card-glow"></div>
+          <div class="hero-card-inner">
+            <span class="hero-card-text">Curated picks</span>
+          </div>
+        </div>
+        <div class="hero-card hero-card-2" data-depth="0.3">
+          <div class="hero-card-glow"></div>
+          <div class="hero-card-inner">
+            <span class="hero-card-text">Author extras</span>
+          </div>
+        </div>
+        <div class="hero-card hero-card-3" data-depth="0.5">
+          <div class="hero-card-glow"></div>
+          <div class="hero-card-inner">
+            <span class="hero-card-text">Cozy goodies</span>
+          </div>
+        </div>
+        <div class="hero-card hero-card-4" data-depth="0.35">
+          <div class="hero-card-glow"></div>
+          <div class="hero-card-inner">
+            <span class="hero-card-text">Community</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================================
+     VARIANT 2: HERO CAROUSEL
+     Карусель с 4 вариантами видео-слайдов (centered, bottom, minimal, split)
+     ============================================================================ -->
+
+<section class="hero-carousel hero-carousel-variant" id="hero-carousel-archive" style="display: none;">
+  <div class="hero-carousel-track" id="heroCarouselTrackArchive">
+    {slides.map((slide, index) => (
+      <div class={`hero-slide hero-slide-${slide.variant}`} data-slide={index}>
+        <div class="hero-slide-bg">
+          <video autoplay muted loop playsinline>
+            <source src={slide.video} type="video/mp4" />
+          </video>
+          <div class={`hero-slide-overlay hero-slide-overlay-${slide.variant === 'centered' ? 'gradient' : slide.variant}`}></div>
+        </div>
+        <div class={`hero-slide-content hero-slide-content-${slide.variant}`}>
+          <span class="hero-slide-label">{slide.label}</span>
+          
+          {slide.variant === 'centered' && (
+            <>
+              {slide.badge && <span class="hero-slide-badge">{slide.badge}</span>}
+              <h2 class="hero-slide-title">{slide.title}</h2>
+              <p class="hero-slide-subtitle">{slide.subtitle}</p>
+              <Button href={slide.buttonHref} variant="primary" size="lg" icon="arrow-right">
+                {slide.buttonText}
+              </Button>
+            </>
+          )}
+          
+          {slide.variant === 'bottom' && (
+            <div class="hero-slide-bottom-inner">
+              <div class="hero-slide-bottom-text">
+                <h2 class="hero-slide-title">{slide.title}</h2>
+                <p class="hero-slide-subtitle">{slide.subtitle}</p>
+              </div>
+              <Button href={slide.buttonHref} variant="primary" size="lg">
+                {slide.buttonText}
+              </Button>
+            </div>
+          )}
+          
+          {slide.variant === 'minimal' && (
+            <>
+              <div class="hero-slide-play">
+                <Icon name="play" size={64} />
+              </div>
+              <span class="hero-slide-caption">{slide.subtitle}</span>
+              <div class="hero-slide-corner-badge">Coming 2026</div>
+            </>
+          )}
+          
+          {slide.variant === 'split' && (
+            <div class="hero-slide-split-text">
+              {slide.badge && <span class="hero-slide-badge hero-slide-badge-outline">{slide.badge}</span>}
+              <h2 class="hero-slide-title">{slide.title}</h2>
+              <p class="hero-slide-subtitle">{slide.subtitle}</p>
+              <Button href={slide.buttonHref} variant="ghost" size="lg" icon="arrow-right" class="hero-slide-btn-light">
+                {slide.buttonText}
+              </Button>
+            </div>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  <!-- Navigation Arrows -->
+  <button class="hero-carousel-arrow hero-carousel-prev" id="carouselPrevArchive" aria-label="Previous slide">
+    <Icon name="chevron-left" size={24} />
+  </button>
+  <button class="hero-carousel-arrow hero-carousel-next" id="carouselNextArchive" aria-label="Next slide">
+    <Icon name="chevron-right" size={24} />
+  </button>
+  
+  <!-- Dots Navigation -->
+  <div class="hero-carousel-dots" id="carouselDotsArchive">
+    {slides.map((_, index) => (
+      <button 
+        class:list={['hero-carousel-dot', { active: index === 0 }]} 
+        data-slide={index} 
+        aria-label={`Go to slide ${index + 1}`}
+      ></button>
+    ))}
+  </div>
+  
+  <!-- Slide Counter -->
+  <div class="hero-carousel-counter">
+    <span id="currentSlideArchive">01</span>
+    <span class="counter-divider">/</span>
+    <span id="totalSlidesArchive">{String(slides.length).padStart(2, '0')}</span>
+  </div>
+</section>
+
+<!-- ============================================================================
+     SCRIPTS (disabled - archived)
+     ============================================================================ -->
+
+<!--
+<script>
+  // Hero parallax effect for Cards variant
+  const heroVisual = document.getElementById('heroVisualArchive');
+  if (heroVisual) {
+    const cards = heroVisual.querySelectorAll('.hero-card');
+    
+    let mouseX = 0;
+    let mouseY = 0;
+    let currentX = 0;
+    let currentY = 0;
+    let isHovering = false;
+    
+    function lerp(start: number, end: number, factor: number) {
+      return start + (end - start) * factor;
+    }
+    
+    heroVisual.addEventListener('mousemove', (e) => {
+      const rect = heroVisual.getBoundingClientRect();
+      mouseX = (e.clientX - rect.left - rect.width / 2) / rect.width;
+      mouseY = (e.clientY - rect.top - rect.height / 2) / rect.height;
+      isHovering = true;
+    });
+    
+    heroVisual.addEventListener('mouseleave', () => {
+      isHovering = false;
+    });
+    
+    function animate() {
+      const factor = isHovering ? 0.08 : 0.05;
+      currentX = lerp(currentX, isHovering ? mouseX : 0, factor);
+      currentY = lerp(currentY, isHovering ? mouseY : 0, factor);
+      
+      cards.forEach(card => {
+        const el = card as HTMLElement;
+        const depth = parseFloat(el.dataset.depth || '0.3');
+        const moveX = currentX * 40 * depth;
+        const moveY = currentY * 30 * depth;
+        const rotateX = currentY * 10 * depth;
+        const rotateY = -currentX * 10 * depth;
+        
+        el.style.transform = `
+          translate(${moveX}px, ${moveY}px)
+          rotateX(${rotateX}deg)
+          rotateY(${rotateY}deg)
+        `;
+      });
+      
+      requestAnimationFrame(animate);
+    }
+    
+    animate();
+  }
+
+  // Carousel functionality
+  const carousel = document.getElementById('hero-carousel-archive');
+  if (carousel) {
+    const track = document.getElementById('heroCarouselTrackArchive');
+    const slides = track?.querySelectorAll('.hero-slide');
+    const prevBtn = document.getElementById('carouselPrevArchive');
+    const nextBtn = document.getElementById('carouselNextArchive');
+    const dots = carousel.querySelectorAll('.hero-carousel-dot');
+    const currentSlideEl = document.getElementById('currentSlideArchive');
+    
+    let currentSlide = 0;
+    const totalSlides = slides?.length || 0;
+    let isTransitioning = false;
+    let autoplayInterval: ReturnType<typeof setInterval>;
+    
+    function goToSlide(index: number, animate = true) {
+      if (isTransitioning || !track) return;
+      
+      if (index < 0) index = totalSlides - 1;
+      if (index >= totalSlides) index = 0;
+      
+      isTransitioning = true;
+      currentSlide = index;
+      
+      track.style.transition = animate ? 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
+      track.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlide);
+      });
+      
+      if (currentSlideEl) {
+        currentSlideEl.textContent = String(currentSlide + 1).padStart(2, '0');
+      }
+      
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 600);
+    }
+    
+    function nextSlide() { goToSlide(currentSlide + 1); }
+    function prevSlide() { goToSlide(currentSlide - 1); }
+    
+    function resetAutoplay() {
+      clearInterval(autoplayInterval);
+      startAutoplay();
+    }
+    
+    function startAutoplay() {
+      autoplayInterval = setInterval(() => {
+        const rect = carousel.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          nextSlide();
+        }
+      }, 6000);
+    }
+    
+    nextBtn?.addEventListener('click', () => { nextSlide(); resetAutoplay(); });
+    prevBtn?.addEventListener('click', () => { prevSlide(); resetAutoplay(); });
+    
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => { goToSlide(index); resetAutoplay(); });
+    });
+    
+    // Touch support
+    let touchStartX = 0;
+    carousel.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    carousel.addEventListener('touchend', (e) => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 50) {
+        diff > 0 ? nextSlide() : prevSlide();
+        resetAutoplay();
+      }
+    }, { passive: true });
+    
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      const rect = carousel.getBoundingClientRect();
+      if (rect.top < window.innerHeight && rect.bottom > 0) {
+        if (e.key === 'ArrowLeft') { prevSlide(); resetAutoplay(); }
+        if (e.key === 'ArrowRight') { nextSlide(); resetAutoplay(); }
+      }
+    });
+    
+    // Pause on hover
+    carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+    carousel.addEventListener('mouseleave', startAutoplay);
+    
+    goToSlide(0, false);
+    startAutoplay();
+  }
+</script>
+-->

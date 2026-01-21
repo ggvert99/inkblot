@@ -1,5 +1,117 @@
 /* ==========================================================================
-   Hero Carousel Styles
+   Hero Video Styles (Main Hero)
+   ========================================================================== */
+
+.hero-video {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--color-chocolate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-video-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-video-bg video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(69, 21, 27, 0.8) 0%,
+    rgba(102, 74, 101, 0.65) 50%,
+    rgba(199, 78, 81, 0.5) 100%
+  );
+}
+
+.hero-video-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  padding: calc(var(--header-height) + var(--space-8)) var(--space-6) var(--space-16);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .hero-video-content {
+    padding: calc(var(--header-height) + var(--space-12)) var(--space-10) var(--space-20);
+    max-width: var(--container-max);
+    margin: 0 auto;
+  }
+}
+
+.hero-video-badge {
+  display: inline-block;
+  width: fit-content;
+  padding: var(--space-2) var(--space-5);
+  background: rgba(251, 222, 156, 0.95);
+  color: var(--color-chocolate);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-radius: var(--radius-full);
+  margin-bottom: var(--space-4);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.hero-video-title {
+  font-family: var(--font-display);
+  font-size: var(--text-4xl);
+  font-weight: 500;
+  color: var(--color-cream);
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+  max-width: 900px;
+}
+
+@media (min-width: 768px) {
+  .hero-video-title {
+    font-size: var(--text-5xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-video-title {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+  }
+}
+
+.hero-video-subtitle {
+  font-family: var(--font-accent);
+  font-size: var(--text-xl);
+  color: var(--color-bittersweet);
+  margin-bottom: var(--space-6);
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+  max-width: 700px;
+}
+
+@media (min-width: 768px) {
+  .hero-video-subtitle {
+    font-size: var(--text-2xl);
+  }
+}
+
+/* ==========================================================================
+   Hero Carousel Styles (Archived)
    ========================================================================== */
 
 .hero-carousel {
