@@ -114,7 +114,7 @@
   line-height: 1.6;
 }
 
-/* Steps Grid */
+/* Steps Grid (Legacy) */
 .steps-grid {
   display: grid;
   gap: var(--space-6);
@@ -140,6 +140,279 @@
     height: 2px;
     background: linear-gradient(90deg, var(--color-bittersweet), transparent);
     z-index: 1;
+  }
+}
+
+/* ==========================================================================
+   Steps Bento Grid (Modern)
+   ========================================================================== */
+
+.steps-bento {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .steps-bento {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+}
+
+@media (min-width: 1024px) {
+  .steps-bento {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    gap: var(--space-6);
+  }
+}
+
+/* Step Bento Card Base */
+.step-bento-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  padding: var(--space-6);
+  transition: all 0.4s var(--ease-out);
+  border: 1px solid rgba(69, 21, 27, 0.06);
+}
+
+@media (min-width: 768px) {
+  .step-bento-card {
+    padding: var(--space-8);
+  }
+}
+
+.step-bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(69, 21, 27, 0.12);
+  border-color: rgba(69, 21, 27, 0.1);
+}
+
+/* Step Number - Decorative */
+.step-bento-number {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 7rem);
+  font-weight: 500;
+  line-height: 1;
+  opacity: 0.08;
+  top: var(--space-4);
+  right: var(--space-4);
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+
+.step-bento-card:hover .step-bento-number {
+  opacity: 0.12;
+  transform: scale(1.05);
+}
+
+/* Step Content */
+.step-bento-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.step-bento-title {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: var(--space-3);
+  text-transform: none;
+}
+
+.step-bento-description {
+  font-size: var(--text-base);
+  line-height: 1.7;
+  flex-grow: 1;
+}
+
+/* ==========================================================================
+   Step Bento Variants
+   ========================================================================== */
+
+/* Main Card - Dark, spans 2 columns */
+.step-bento-main {
+  background: linear-gradient(135deg, var(--color-chocolate) 0%, #5a2329 100%);
+  color: var(--color-cream);
+}
+
+@media (min-width: 1024px) {
+  .step-bento-main {
+    grid-column: span 2;
+    padding: var(--space-10);
+  }
+}
+
+.step-bento-main .step-bento-number {
+  color: var(--color-cream);
+  opacity: 0.1;
+}
+
+.step-bento-main:hover .step-bento-number {
+  opacity: 0.15;
+}
+
+.step-bento-main .step-bento-title {
+  font-size: var(--text-2xl);
+  color: var(--color-cream);
+}
+
+@media (min-width: 768px) {
+  .step-bento-main .step-bento-title {
+    font-size: var(--text-3xl);
+  }
+}
+
+.step-bento-main .step-bento-description {
+  color: rgba(250, 247, 243, 0.8);
+  font-size: var(--text-lg);
+  max-width: 500px;
+}
+
+/* Decorative orb for main card */
+.step-bento-main::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: var(--color-terracotta);
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.25;
+  top: -50px;
+  right: -50px;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.step-bento-main:hover::before {
+  opacity: 0.35;
+}
+
+/* Compact Card - Light background */
+.step-bento-compact {
+  background: var(--color-cream);
+  color: var(--color-text-primary);
+}
+
+.step-bento-compact .step-bento-number {
+  color: var(--color-bittersweet);
+  opacity: 0.15;
+}
+
+.step-bento-compact:hover .step-bento-number {
+  opacity: 0.25;
+}
+
+.step-bento-compact .step-bento-description {
+  color: var(--color-text-secondary);
+}
+
+/* Wide Card - Accent background, spans 2 columns */
+.step-bento-wide {
+  background: linear-gradient(135deg, var(--color-sweet) 0%, rgba(251, 222, 156, 0.7) 100%);
+  color: var(--color-text-primary);
+}
+
+@media (min-width: 768px) {
+  .step-bento-wide {
+    grid-column: span 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .step-bento-wide {
+    grid-column: span 2;
+  }
+}
+
+.step-bento-wide .step-bento-number {
+  color: var(--color-chocolate);
+  opacity: 0.1;
+}
+
+.step-bento-wide:hover .step-bento-number {
+  opacity: 0.15;
+}
+
+.step-bento-wide .step-bento-title {
+  font-size: var(--text-2xl);
+}
+
+.step-bento-wide .step-bento-description {
+  color: var(--color-aubergine);
+  font-size: var(--text-lg);
+}
+
+/* Decorative element for wide card */
+.step-bento-wide::after {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: var(--color-bittersweet);
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.2;
+  bottom: -30px;
+  left: 20%;
+  pointer-events: none;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.step-bento-wide:hover::after {
+  opacity: 0.3;
+}
+
+/* ==========================================================================
+   Step Bento Mobile Refinements
+   ========================================================================== */
+
+@media (max-width: 479px) {
+  .step-bento-card {
+    padding: var(--space-5);
+  }
+  
+  .step-bento-number {
+    font-size: 3.5rem;
+    top: var(--space-3);
+    right: var(--space-3);
+  }
+  
+  .step-bento-title {
+    font-size: var(--text-lg);
+  }
+  
+  .step-bento-main .step-bento-title {
+    font-size: var(--text-xl);
+  }
+  
+  .step-bento-main .step-bento-description,
+  .step-bento-wide .step-bento-description {
+    font-size: var(--text-base);
+  }
+  
+  .step-bento-wide .step-bento-title {
+    font-size: var(--text-xl);
+  }
+}
+
+/* Disable hover transforms on touch devices */
+@media (hover: none) {
+  .step-bento-card:hover {
+    transform: none;
+  }
+  
+  .step-bento-card:hover .step-bento-number {
+    transform: none;
   }
 }
 

@@ -1,27 +1,30 @@
 ---
 import SectionHeader from '@components/common/SectionHeader.astro';
-import StepCard from '@components/cards/StepCard.astro';
 
 const steps = [
   {
     number: '01',
     title: 'Join the waitlist',
-    description: "Pop your email below and you'll be first to know when we launch. Early birds get special perks."
+    description: "Pop your email below and you'll be first to know when we launch. Early birds get special perks.",
+    variant: 'main' as const
   },
   {
     number: '02',
     title: 'We reveal the theme',
-    description: "Each quarter has a different vibe — we'll tease the theme and drop window so you know what's coming."
+    description: "Each quarter has a different vibe — we'll tease the theme and drop window so you know what's coming.",
+    variant: 'compact' as const
   },
   {
     number: '03',
     title: 'Subscribe & receive',
-    description: 'Lock in your spot, and your perfectly curated box arrives at your door. Quarterly joy, delivered.'
+    description: 'Lock in your spot, and your perfectly curated box arrives at your door. Quarterly joy, delivered.',
+    variant: 'compact' as const
   },
   {
     number: '04',
     title: 'Unbox & connect',
-    description: 'Dive into your reads, enjoy your goodies, and join the community chat to discuss all the feels.'
+    description: 'Dive into your reads, enjoy your goodies, and join the community chat to discuss all the feels.',
+    variant: 'wide' as const
   }
 ];
 ---
@@ -30,9 +33,22 @@ const steps = [
   <div class="container">
     <SectionHeader title="how it works" />
     
-    <div class="steps-grid">
-      {steps.map((step) => (
-        <StepCard {...step} />
+    <div class="steps-bento">
+      {steps.map((step, index) => (
+        <article 
+          class:list={[
+            'step-bento-card',
+            `step-bento-${step.variant}`,
+            'reveal'
+          ]}
+          style={`--animation-order: ${index}`}
+        >
+          <span class="step-bento-number" aria-hidden="true">{step.number}</span>
+          <div class="step-bento-content">
+            <h3 class="step-bento-title">{step.title}</h3>
+            <p class="step-bento-description">{step.description}</p>
+          </div>
+        </article>
       ))}
     </div>
   </div>
