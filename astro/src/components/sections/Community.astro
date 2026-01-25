@@ -1,4 +1,5 @@
 ---
+import SectionHeader from '@components/common/SectionHeader.astro';
 import Button from '@components/common/Button.astro';
 import Icon from '@components/common/Icon.astro';
 
@@ -8,83 +9,58 @@ const communityFeatures = [
   {
     icon: 'book',
     title: 'Book Discussions',
-    description: 'Discuss your reads, share feels, get recommendations from readers who truly get it.'
+    description: 'Monthly book club sessions, spoiler channels, and spaces to dissect every plot twist together.'
   },
   {
     icon: 'heart',
-    title: 'Exclusive Content',
-    description: 'Author Q&As, early reveals, behind-the-scenes peeks, and subscriber-only events.'
-  },
-  {
-    icon: 'sparkles',
     title: 'Reader Connection',
-    description: 'Find your people — fellow romance enthusiasts who share your reading chaos.'
+    description: 'Find your people — fellow romance enthusiasts who share your reading chaos and get it.'
   }
 ];
 ---
 
 <section class="section section-community" id="community">
   <div class="container">
-    <div class="community-wrapper">
-      <div class="community-content">
-        <span class="community-eyebrow">More than a box</span>
-        <h2 class="community-title">Join a community that <em>gets</em> your romance obsession.</h2>
-        <p class="community-lead">
-          Inkblot Crew isn't just curated books — it's a space where bookish souls connect, 
-          discuss, and obsess over stories together. Our Discord is where the real magic happens.
-        </p>
-        
-        <div class="community-features">
-          {communityFeatures.map((feature) => (
-            <div class="community-feature">
-              <div class="community-feature-icon">
-                <Icon name={feature.icon} size={24} />
-              </div>
-              <div class="community-feature-text">
-                <h4>{feature.title}</h4>
-                <p>{feature.description}</p>
-              </div>
-            </div>
-          ))}
+    <SectionHeader 
+      title="join the community"
+      subtitle="More than a box — it's a space where bookish souls connect"
+    />
+    
+    <div class="community-grid">
+      <!-- Main Discord Card -->
+      <div class="community-main">
+        <div class="community-main-content">
+          <div class="community-discord-icon">
+            <Icon name="discord" size={32} />
+          </div>
+          <h3>Our Discord is where the magic happens</h3>
+          <p>Join hundreds of romance readers discussing their latest obsessions, sharing recommendations, and ugly-crying over book endings together.</p>
+          <div class="community-cta">
+            <Button href={discordUrl} variant="primary" size="lg" icon="arrow-right">
+              Join Our Discord
+            </Button>
+            <span class="community-note">Free to join — subscribers & curious readers welcome</span>
+          </div>
         </div>
-        
-        <div class="community-cta">
-          <Button href={discordUrl} variant="primary" size="lg" icon="discord">
-            Join Our Discord
-          </Button>
-          <p class="community-note">Free to join — subscribers & curious readers welcome</p>
+        <div class="community-main-visual">
+          <div class="community-orb community-orb-1"></div>
+          <div class="community-orb community-orb-2"></div>
         </div>
       </div>
       
-      <div class="community-visual">
-        <div class="community-card community-card-1">
-          <div class="community-avatar-stack">
-            <div class="community-avatar">
-              <Icon name="user" size={16} />
+      <!-- Feature Cards -->
+      <div class="community-features">
+        {communityFeatures.map((feature, index) => (
+          <div class={`community-feature community-feature-${index + 1}`}>
+            <div class="community-feature-icon">
+              <Icon name={feature.icon} size={24} />
             </div>
-            <div class="community-avatar">
-              <Icon name="user" size={16} />
-            </div>
-            <div class="community-avatar">
-              <Icon name="user" size={16} />
+            <div class="community-feature-text">
+              <h4>{feature.title}</h4>
+              <p>{feature.description}</p>
             </div>
           </div>
-          <span>150+ members chatting</span>
-        </div>
-        
-        <div class="community-card community-card-2">
-          <Icon name="heart" size={20} />
-          <span>"OMG that ending!!"</span>
-        </div>
-        
-        <div class="community-card community-card-3">
-          <Icon name="book" size={20} />
-          <span>Next month's reveal</span>
-        </div>
-        
-        <div class="community-discord-badge">
-          <Icon name="discord" size={48} />
-        </div>
+        ))}
       </div>
     </div>
   </div>
@@ -92,7 +68,6 @@ const communityFeatures = [
 
 <style>
   .section-community {
-    background: linear-gradient(180deg, var(--color-cream) 0%, rgba(69, 21, 27, 0.03) 100%);
     position: relative;
     overflow: hidden;
   }
@@ -101,81 +76,168 @@ const communityFeatures = [
     content: '';
     position: absolute;
     top: 20%;
-    left: -10%;
-    width: 50%;
+    right: -10%;
+    width: 40%;
     height: 60%;
     background: var(--color-bittersweet);
     border-radius: 50%;
     filter: blur(150px);
-    opacity: 0.1;
+    opacity: 0.08;
     pointer-events: none;
   }
   
-  .community-wrapper {
+  .community-grid {
     display: grid;
-    gap: var(--space-12);
-    align-items: center;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
   }
   
   @media (min-width: 1024px) {
-    .community-wrapper {
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-16);
+    .community-grid {
+      grid-template-columns: 1.2fr 1fr;
+      gap: var(--space-8);
+      align-items: stretch;
     }
   }
   
-  .community-content {
+  /* Main Discord Card */
+  .community-main {
+    background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%);
+    color: var(--color-cream);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-8);
     position: relative;
-    z-index: 1;
-  }
-  
-  .community-eyebrow {
-    display: inline-block;
-    font-size: var(--text-sm);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--color-accent);
-    margin-bottom: var(--space-4);
-  }
-  
-  .community-title {
-    font-size: var(--text-3xl);
-    line-height: 1.2;
-    color: var(--color-text-primary);
-    margin-bottom: var(--space-6);
+    overflow: hidden;
   }
   
   @media (min-width: 768px) {
-    .community-title {
-      font-size: var(--text-4xl);
+    .community-main {
+      padding: var(--space-10);
     }
   }
   
-  .community-title em {
-    font-style: italic;
-    color: var(--color-accent);
+  .community-main-content {
+    position: relative;
+    z-index: 2;
   }
   
-  .community-lead {
+  .community-discord-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-5);
+  }
+  
+  .community-main h3 {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+    margin-bottom: var(--space-4);
+    line-height: 1.3;
+  }
+  
+  @media (min-width: 768px) {
+    .community-main h3 {
+      font-size: var(--text-3xl);
+    }
+  }
+  
+  .community-main p {
     font-size: var(--text-lg);
-    color: var(--color-text-secondary);
+    color: rgba(255, 255, 255, 0.85);
     line-height: 1.7;
-    margin-bottom: var(--space-10);
-    max-width: 540px;
+    margin-bottom: var(--space-8);
+    max-width: 480px;
   }
   
+  .community-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    align-items: flex-start;
+  }
+  
+  .community-cta :global(.btn) {
+    background: white;
+    border-color: white;
+    color: #5865F2;
+  }
+  
+  .community-cta :global(.btn:hover) {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  .community-note {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  /* Visual orbs */
+  .community-main-visual {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  .community-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+  }
+  
+  .community-orb-1 {
+    width: 300px;
+    height: 300px;
+    background: #7289DA;
+    opacity: 0.4;
+    top: -100px;
+    right: -50px;
+  }
+  
+  .community-orb-2 {
+    width: 200px;
+    height: 200px;
+    background: #99AAB5;
+    opacity: 0.2;
+    bottom: -50px;
+    left: 20%;
+  }
+  
+  /* Feature Cards Container */
   .community-features {
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
-    margin-bottom: var(--space-10);
+    gap: var(--space-5);
   }
   
+  /* Feature Cards */
   .community-feature {
+    background: var(--color-cream);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-6);
+    border: 1px solid rgba(69, 21, 27, 0.06);
+    transition: all 0.4s var(--ease-out);
     display: flex;
     gap: var(--space-4);
     align-items: flex-start;
+    flex: 1;
+  }
+  
+  @media (min-width: 768px) {
+    .community-feature {
+      padding: var(--space-8);
+    }
+  }
+  
+  .community-feature:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(69, 21, 27, 0.1);
+    border-color: rgba(69, 21, 27, 0.1);
   }
   
   .community-feature-icon {
@@ -184,173 +246,36 @@ const communityFeatures = [
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-sweet);
     border-radius: var(--radius-lg);
-    color: var(--color-chocolate);
     flex-shrink: 0;
+    transition: transform 0.3s var(--ease-out);
+  }
+  
+  .community-feature:hover .community-feature-icon {
+    transform: scale(1.1);
+  }
+  
+  .community-feature-1 .community-feature-icon {
+    background: var(--color-sweet);
+    color: var(--color-chocolate);
+  }
+  
+  .community-feature-2 .community-feature-icon {
+    background: var(--color-bittersweet);
+    color: var(--color-chocolate);
   }
   
   .community-feature-text h4 {
-    font-size: var(--text-base);
+    font-size: var(--text-lg);
     font-weight: 700;
+    margin-bottom: var(--space-2);
     color: var(--color-text-primary);
-    margin-bottom: var(--space-1);
   }
   
   .community-feature-text p {
-    font-size: var(--text-sm);
+    font-size: var(--text-base);
     color: var(--color-text-secondary);
-    line-height: 1.5;
-  }
-  
-  .community-cta {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-3);
-  }
-  
-  .community-cta :global(.btn) {
-    background: #5865F2;
-    border-color: #5865F2;
-  }
-  
-  .community-cta :global(.btn:hover) {
-    background: #4752C4;
-    border-color: #4752C4;
-  }
-  
-  .community-note {
-    font-size: var(--text-sm);
-    color: var(--color-text-secondary);
-  }
-  
-  /* Visual side */
-  .community-visual {
-    position: relative;
-    height: 400px;
-    display: none;
-  }
-  
-  @media (min-width: 1024px) {
-    .community-visual {
-      display: block;
-    }
-  }
-  
-  .community-card {
-    position: absolute;
-    background: var(--color-cream);
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-neu);
-    padding: var(--space-4) var(--space-5);
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    font-size: var(--text-sm);
-    font-weight: 600;
-    color: var(--color-text-primary);
-    transition: all 0.4s var(--ease-out);
-  }
-  
-  .community-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-neu-hover);
-  }
-  
-  .community-card-1 {
-    top: 10%;
-    left: 5%;
-    animation: floatCard1 6s ease-in-out infinite;
-  }
-  
-  .community-card-2 {
-    top: 40%;
-    right: 10%;
-    animation: floatCard2 7s ease-in-out infinite;
-  }
-  
-  .community-card-2 :global(svg) {
-    color: var(--color-bittersweet);
-  }
-  
-  .community-card-3 {
-    bottom: 15%;
-    left: 15%;
-    animation: floatCard3 8s ease-in-out infinite;
-  }
-  
-  .community-card-3 :global(svg) {
-    color: var(--color-accent);
-  }
-  
-  .community-avatar-stack {
-    display: flex;
-  }
-  
-  .community-avatar {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background: var(--color-sweet);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--color-cream);
-    margin-left: -8px;
-    color: var(--color-chocolate);
-  }
-  
-  .community-avatar:first-child {
-    margin-left: 0;
-    background: var(--color-bittersweet);
-  }
-  
-  .community-avatar:nth-child(2) {
-    background: var(--color-aubergine);
-    color: var(--color-cream);
-  }
-  
-  .community-discord-badge {
-    position: absolute;
-    bottom: 30%;
-    right: 25%;
-    width: 100px;
-    height: 100px;
-    background: #5865F2;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    box-shadow: 0 20px 60px rgba(88, 101, 242, 0.4);
-    animation: pulse 3s ease-in-out infinite;
-  }
-  
-  @keyframes floatCard1 {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(10px, -15px); }
-  }
-  
-  @keyframes floatCard2 {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(-8px, -12px); }
-  }
-  
-  @keyframes floatCard3 {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(12px, -10px); }
-  }
-  
-  @keyframes pulse {
-    0%, 100% { 
-      transform: scale(1);
-      box-shadow: 0 20px 60px rgba(88, 101, 242, 0.4);
-    }
-    50% { 
-      transform: scale(1.05);
-      box-shadow: 0 25px 80px rgba(88, 101, 242, 0.5);
-    }
+    line-height: 1.6;
   }
   
   /* Reveal animation */
@@ -365,11 +290,7 @@ const communityFeatures = [
     transform: translateY(0);
   }
   
-  .community-features .community-feature:nth-child(2):global(.reveal) {
+  .community-feature-2:global(.reveal) {
     transition-delay: 0.1s;
-  }
-  
-  .community-features .community-feature:nth-child(3):global(.reveal) {
-    transition-delay: 0.2s;
   }
 </style>

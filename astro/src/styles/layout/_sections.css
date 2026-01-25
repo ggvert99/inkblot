@@ -562,7 +562,7 @@
 
 @media (min-width: 1024px) {
   .bento-stats {
-    grid-column: span 1;
+    grid-column: span 2;
   }
 }
 
