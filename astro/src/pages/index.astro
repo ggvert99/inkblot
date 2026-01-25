@@ -6,6 +6,7 @@ import HowItWorks from '@components/sections/HowItWorks.astro';
 import WhatsInside from '@components/sections/WhatsInside.astro';
 import Testimonials from '@components/sections/Testimonials.astro';
 import Pricing from '@components/sections/Pricing.astro';
+import Community from '@components/sections/Community.astro';
 import Audience from '@components/sections/Audience.astro';
 import FAQ from '@components/sections/FAQ.astro';
 import SignupCTA from '@components/sections/SignupCTA.astro';
@@ -16,6 +17,7 @@ import SignupCTA from '@components/sections/SignupCTA.astro';
   <About />
   <HowItWorks />
   <WhatsInside />
+  <Community />
   <Testimonials />
   <Pricing />
   <Audience />
@@ -25,7 +27,7 @@ import SignupCTA from '@components/sections/SignupCTA.astro';
 
 <script>
   // Scroll reveal animations
-  const revealElements = document.querySelectorAll('.section-header, .feature-card, .step-card, .step-bento-card, .box-card, .audience-card, .partnership-card, .pricing-card, .faq-item');
+  const revealElements = document.querySelectorAll('.section-header, .feature-card, .step-card, .step-bento-card, .box-card, .audience-card, .partnership-card, .pricing-card, .faq-item, .community-feature');
   
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
