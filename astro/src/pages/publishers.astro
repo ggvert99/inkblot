@@ -18,9 +18,6 @@ const publisherBenefits = {
     'Long-tail discoverability with dedicated community'
   ],
   promise: "Visibility, sales, reviews, and readers who'll champion your books.",
-  buttonText: 'Get Started',
-  buttonHref: '#partner-form',
-  buttonVariant: 'secondary' as const,
   variant: 'publishers' as const
 };
 ---
@@ -77,6 +74,7 @@ const publisherBenefits = {
     align-items: center;
     justify-content: center;
     padding: var(--space-20) var(--space-4);
+    padding-top: calc(var(--header-height) + var(--space-16));
     overflow: hidden;
   }
 
@@ -146,6 +144,7 @@ const publisherBenefits = {
     .hero-publisher {
       min-height: 50vh;
       padding: var(--space-16) var(--space-4);
+      padding-top: calc(var(--header-height) + var(--space-12));
     }
 
     .hero-publisher-subtitle {

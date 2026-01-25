@@ -7,8 +7,8 @@ interface Props {
   lead: string;
   items: string[];
   promise: string;
-  buttonText: string;
-  buttonHref: string;
+  buttonText?: string;
+  buttonHref?: string;
   buttonVariant?: 'primary' | 'secondary';
   variant?: 'readers' | 'publishers';
 }
@@ -18,11 +18,13 @@ const {
   lead, 
   items, 
   promise, 
-  buttonText, 
+  buttonText,
   buttonHref,
   buttonVariant = 'primary',
   variant = 'readers'
 } = Astro.props;
+
+const showButton = buttonText && buttonHref;
 ---
 
 <div class:list={['audience-card', `audience-${variant}`]}>
@@ -45,8 +47,12 @@ const {
     
     <p class="audience-promise">{promise}</p>
     
-    <Button href={buttonHref} variant={buttonVariant}>
-      {buttonText}
-    </Button>
+    {showButton && (
+      <div class="audience-cta">
+        <Button href={buttonHref} variant={buttonVariant}>
+          {buttonText}
+        </Button>
+      </div>
+    )}
   </div>
 </div>

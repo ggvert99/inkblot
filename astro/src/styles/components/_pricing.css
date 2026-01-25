@@ -274,6 +274,13 @@
   border-color: rgba(234, 157, 174, 0.2);
 }
 
+/* CTA Button Container */
+.pricing-card-cta {
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+}
+
 /* ==========================================================================
    Pricing Note
    ========================================================================== */
