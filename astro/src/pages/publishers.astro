@@ -1,0 +1,155 @@
+---
+import Layout from '@layouts/Layout.astro';
+import Partnership from '@components/sections/Partnership.astro';
+import PublisherSignupCTA from '@components/sections/PublisherSignupCTA.astro';
+import SectionHeader from '@components/common/SectionHeader.astro';
+import AudienceCard from '@components/cards/AudienceCard.astro';
+import Button from '@components/common/Button.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const publisherBenefits = {
+  title: 'Why Partner with Inkblot Crew',
+  lead: 'Get your books into the hands of engaged, passionate romance readers who love sharing discoveries.',
+  items: [
+    'Guaranteed placement & feature in our quarterly boxes',
+    'Influencer seeding to active BookTok/Bookstagram creators',
+    'Post-campaign insights & engagement metrics',
+    'Long-tail discoverability with dedicated community'
+  ],
+  promise: "Visibility, sales, reviews, and readers who'll champion your books.",
+  buttonText: 'Get Started',
+  buttonHref: '#partner-form',
+  buttonVariant: 'secondary' as const,
+  variant: 'publishers' as const
+};
+---
+
+<Layout 
+  title="For Publishers & Authors — Inkblot Crew" 
+  description="Partner with Inkblot Crew to get your indie romance books featured in our quarterly subscription boxes. Reach engaged UK readers who love discovering new authors."
+>
+  <!-- Publisher Hero -->
+  <section class="hero-publisher">
+    <div class="hero-publisher-bg">
+      <div class="hero-publisher-overlay"></div>
+    </div>
+    
+    <div class="hero-publisher-content">
+      <span class="hero-publisher-badge">For Publishers & Authors</span>
+      <h1 class="hero-publisher-title">get your books discovered</h1>
+      <p class="hero-publisher-subtitle">
+        Partner with us to reach passionate romance readers in the UK who love supporting indie authors and sharing their discoveries.
+      </p>
+      <Button href="#partner-form" variant="primary" size="lg" icon="arrow-right">
+        Start a Partnership
+      </Button>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="section section-publisher-benefits">
+    <div class="container">
+      <SectionHeader 
+        title="why work with us"
+        subtitle="We connect indie publishers and authors with readers who are actively looking for their next favourite book"
+      />
+      
+      <div class="benefits-single">
+        <AudienceCard {...publisherBenefits} />
+      </div>
+    </div>
+  </section>
+
+  <!-- Partnership Model -->
+  <Partnership />
+
+  <!-- Partner Form -->
+  <PublisherSignupCTA />
+</Layout>
+
+<style>
+  /* Publisher Hero */
+  .hero-publisher {
+    position: relative;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-20) var(--space-4);
+    overflow: hidden;
+  }
+
+  .hero-publisher-bg {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  }
+
+  .hero-publisher-overlay {
+    position: absolute;
+    inset: 0;
+    background: url('/inkblot/images/logo2.svg') no-repeat center center;
+    background-size: 40%;
+    opacity: 0.05;
+  }
+
+  .hero-publisher-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 700px;
+  }
+
+  .hero-publisher-badge {
+    display: inline-block;
+    padding: var(--space-2) var(--space-4);
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-cream);
+    margin-bottom: var(--space-4);
+  }
+
+  .hero-publisher-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--color-cream);
+    margin-bottom: var(--space-4);
+    text-transform: lowercase;
+  }
+
+  .hero-publisher-subtitle {
+    font-size: var(--text-lg);
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: var(--space-8);
+    line-height: 1.6;
+  }
+
+  /* Benefits Section */
+  .section-publisher-benefits {
+    background: var(--color-cream);
+  }
+
+  .benefits-single {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-publisher {
+      min-height: 50vh;
+      padding: var(--space-16) var(--space-4);
+    }
+
+    .hero-publisher-subtitle {
+      font-size: var(--text-base);
+    }
+  }
+</style>

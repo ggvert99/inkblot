@@ -20,21 +20,11 @@ import Icon from '@components/common/Icon.astro';
           <input type="hidden" name="utm_medium" id="utmMedium">
           <input type="hidden" name="utm_campaign" id="utmCampaign">
           <input type="hidden" name="referrer" id="referrer">
-          <input type="hidden" name="mode" id="formMode" value="reader">
+          <input type="hidden" name="mode" value="reader">
           
           <!-- Honeypot -->
           <div class="form-honeypot" aria-hidden="true">
             <input type="text" name="website" tabindex="-1" autocomplete="off">
-          </div>
-          
-          <!-- Mode Selector -->
-          <div class="form-mode-selector">
-            <button type="button" class="mode-btn active" data-mode="reader">
-              <span>I'm a Reader</span>
-            </button>
-            <button type="button" class="mode-btn" data-mode="publisher">
-              <span>I'm a Publisher/Author</span>
-            </button>
           </div>
           
           <!-- Email Field -->
@@ -44,26 +34,6 @@ import Icon from '@components/common/Icon.astro';
             <span class="form-error" id="emailError">
               Oops! We'll need a valid email to keep you in the loop
             </span>
-          </div>
-          
-          <!-- Publisher-specific Fields -->
-          <div class="form-fields-publisher hidden" id="publisherFields">
-            <div class="form-group">
-              <label for="company">
-                Company / Imprint / Author name <span class="required">*</span>
-              </label>
-              <input type="text" id="company" name="company" placeholder="Your publishing name">
-              <span class="form-error" id="companyError">
-                We'd love to know who we're chatting with!
-              </span>
-            </div>
-            
-            <div class="form-group">
-              <label for="message">
-                Tell us about your books <span class="optional">(optional)</span>
-              </label>
-              <textarea id="message" name="message" rows="3" placeholder="What titles are you excited about?"></textarea>
-            </div>
           </div>
           
           <!-- Submit -->
@@ -101,12 +71,7 @@ import Icon from '@components/common/Icon.astro';
 
 <script>
   const form = document.getElementById('signupForm') as HTMLFormElement;
-  const modeButtons = document.querySelectorAll('.mode-btn');
-  const publisherFields = document.getElementById('publisherFields');
   const formSuccess = document.getElementById('formSuccess');
-  const formModeInput = document.getElementById('formMode') as HTMLInputElement;
-  
-  let currentMode = 'reader';
   
   // Capture UTM params
   const urlParams = new URLSearchParams(window.location.search);
@@ -119,26 +84,6 @@ import Icon from '@components/common/Icon.astro';
   if (utmMedium) utmMedium.value = urlParams.get('utm_medium') || '';
   if (utmCampaign) utmCampaign.value = urlParams.get('utm_campaign') || '';
   if (referrerField) referrerField.value = document.referrer || '';
-  
-  // Mode switching
-  modeButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const mode = (btn as HTMLElement).dataset.mode;
-      if (!mode || mode === currentMode) return;
-      
-      currentMode = mode;
-      formModeInput.value = mode;
-      
-      modeButtons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      
-      if (mode === 'reader') {
-        publisherFields?.classList.add('hidden');
-      } else {
-        publisherFields?.classList.remove('hidden');
-      }
-    });
-  });
   
   // Form validation
   function isValidEmail(email: string) {
@@ -155,17 +100,6 @@ import Icon from '@components/common/Icon.astro';
       isValid = false;
     } else {
       emailGroup?.classList.remove('error');
-    }
-    
-    if (currentMode === 'publisher') {
-      const company = document.getElementById('company') as HTMLInputElement;
-      const companyGroup = company?.closest('.form-group');
-      if (company && company.value.trim() === '') {
-        companyGroup?.classList.add('error');
-        isValid = false;
-      } else {
-        companyGroup?.classList.remove('error');
-      }
     }
     
     return isValid;
@@ -234,10 +168,4 @@ import Icon from '@components/common/Icon.astro';
   emailInput?.addEventListener('input', () => {
     emailInput.closest('.form-group')?.classList.remove('error');
   });
-  
-  // Global function for partner buttons
-  (window as any).selectPublisherMode = function() {
-    const publisherBtn = document.querySelector('.mode-btn[data-mode="publisher"]');
-    if (publisherBtn) (publisherBtn as HTMLButtonElement).click();
-  };
 </script>

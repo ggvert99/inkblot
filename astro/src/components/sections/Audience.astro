@@ -16,33 +16,14 @@ const readerData = {
   buttonHref: '#join',
   variant: 'readers' as const
 };
-
-const publisherData = {
-  title: 'For Publishers & Authors',
-  lead: 'Get your books into the hands of engaged, passionate romance readers who love sharing discoveries.',
-  items: [
-    'Guaranteed placement & feature in our quarterly boxes',
-    'Influencer seeding to active BookTok/Bookstagram creators',
-    'Post-campaign insights & engagement metrics',
-    'Long-tail discoverability with dedicated community'
-  ],
-  promise: "Visibility, sales, reviews, and readers who'll champion your books.",
-  buttonText: 'Discuss a Partnership',
-  buttonHref: '#join',
-  buttonVariant: 'secondary' as const,
-  variant: 'publishers' as const
-};
 ---
 
 <section class="section section-audience" id="community">
   <div class="container">
     <SectionHeader title="who it's for" />
     
-    <div class="audience-grid">
+    <div class="audience-grid audience-single">
       <AudienceCard {...readerData} />
-      <div id="publishers">
-        <AudienceCard {...publisherData} />
-      </div>
     </div>
   </div>
 </section>
