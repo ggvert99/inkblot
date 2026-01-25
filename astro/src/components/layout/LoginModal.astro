@@ -24,8 +24,8 @@ import Button from '@components/common/Button.astro';
           >
         </div>
         <Button type="submit" variant="primary" full>
-          <span class="btn-text">Send code</span>
-          <span class="btn-loading">
+          <span class="btn-label">Send code</span>
+          <span class="btn-loading-indicator">
             <Icon name="spinner" size={20} class="spinner" />
           </span>
         </Button>
@@ -50,12 +50,12 @@ import Button from '@components/common/Button.astro';
           ))}
         </div>
         <Button type="submit" variant="primary" full>
-          <span class="btn-text">Verify</span>
-          <span class="btn-loading">
+          <span class="btn-label">Verify</span>
+          <span class="btn-loading-indicator">
             <Icon name="spinner" size={20} class="spinner" />
           </span>
         </Button>
-        <button type="button" class="btn-text resend-btn" id="resendCode">
+        <button type="button" class="btn-link resend-btn" id="resendCode">
           Resend code
         </button>
       </form>

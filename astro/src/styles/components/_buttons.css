@@ -14,6 +14,8 @@
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border-radius: var(--radius-full);
+  border: none;
+  cursor: pointer;
   transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
@@ -32,36 +34,39 @@
   opacity: 1;
 }
 
+/* PRIMARY - terracotta фон, cream текст */
 .btn-primary {
-  background: var(--color-accent);
-  color: white;
+  background: var(--color-terracotta);
+  color: var(--color-cream);
   box-shadow: var(--shadow-md), 0 4px 20px rgba(199, 78, 81, 0.3);
 }
 
 .btn-primary:hover {
-  background: #b54548;
+  background: var(--color-chocolate);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg), 0 8px 30px rgba(199, 78, 81, 0.4);
+  box-shadow: var(--shadow-lg), 0 8px 30px rgba(69, 21, 27, 0.4);
 }
 
 .btn-primary:active {
   transform: translateY(0);
 }
 
+/* SECONDARY - aubergine фон, cream текст */
 .btn-secondary {
   background: var(--color-aubergine);
-  color: white;
+  color: var(--color-cream);
   box-shadow: var(--shadow-md);
 }
 
 .btn-secondary:hover {
-  background: #553d54;
+  background: var(--color-chocolate);
   transform: translateY(-2px);
 }
 
+/* GHOST - прозрачный, chocolate текст и рамка */
 .btn-ghost {
   background: transparent;
-  color: var(--color-text-primary);
+  color: var(--color-chocolate);
   border: 2px solid var(--color-chocolate);
 }
 
@@ -70,9 +75,27 @@
   color: var(--color-cream);
 }
 
+/* GHOST LIGHT - для тёмных фонов, cream текст и рамка */
+.btn-ghost-light {
+  background: transparent;
+  color: var(--color-cream);
+  border: 2px solid var(--color-cream);
+}
+
+.btn-ghost-light:hover {
+  background: var(--color-cream);
+  color: var(--color-chocolate);
+}
+
+/* Size Modifiers */
 .btn-lg {
   padding: var(--space-4) var(--space-8);
   font-size: var(--text-base);
+}
+
+.btn-sm {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-xs);
 }
 
 .btn-full {
@@ -80,29 +103,30 @@
 }
 
 /* Loading State */
-.btn-loading {
+.btn-loading-indicator {
   display: none;
 }
 
-.btn.loading .btn-text {
+.btn.loading .btn-label {
   display: none;
 }
 
-.btn.loading .btn-loading {
+.btn.loading .btn-loading-indicator {
   display: block;
 }
 
-/* Text Button */
-.btn-text {
+/* Text Link Button */
+.btn-link {
   font-size: var(--text-sm);
   font-weight: 600;
-  color: var(--color-text-secondary);
+  color: var(--color-aubergine);
   transition: color var(--transition-fast);
   background: none;
   border: none;
   padding: 0;
+  cursor: pointer;
 }
 
-.btn-text:hover {
-  color: var(--color-accent);
+.btn-link:hover {
+  color: var(--color-terracotta);
 }

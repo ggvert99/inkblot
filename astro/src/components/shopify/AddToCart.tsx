@@ -73,7 +73,7 @@ export default function AddToCart({
         className="btn btn-primary btn-full"
       >
         {loading ? (
-          <span className="btn-loading">
+          <span className="btn-loading-indicator">
             <svg className="spinner" width="20" height="20" viewBox="0 0 24 24">
               <circle 
                 cx="12" cy="12" r="10" 
@@ -86,7 +86,7 @@ export default function AddToCart({
             </svg>
           </span>
         ) : (
-          <span className="btn-text">{buttonText}</span>
+          <span className="btn-label">{buttonText}</span>
         )}
       </button>
       {error && (
