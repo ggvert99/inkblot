@@ -15,6 +15,11 @@
   box-shadow: var(--shadow-neu-hover);
 }
 
+.card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
 /* Feature Card */
 .feature-card {
   background: var(--color-cream);
@@ -34,6 +39,11 @@
 .feature-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-neu-hover);
+}
+
+.feature-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 .feature-icon {
@@ -83,6 +93,11 @@
 .step-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-neu-hover);
+}
+
+.step-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 .step-number {
@@ -188,6 +203,11 @@
   transform: translateY(-4px);
   box-shadow: 0 20px 40px rgba(69, 21, 27, 0.12);
   border-color: rgba(69, 21, 27, 0.1);
+}
+
+.step-bento-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 /* Step Number - Decorative */
@@ -437,6 +457,11 @@
 .box-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-neu-hover);
+}
+
+.box-card:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
 }
 
 .box-card-icon {

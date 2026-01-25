@@ -115,6 +115,14 @@
   display: block;
 }
 
+/* Disabled State */
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
 /* Text Link Button */
 .btn-link {
   font-size: var(--text-sm);
@@ -129,4 +137,9 @@
 
 .btn-link:hover {
   color: var(--color-terracotta);
+}
+
+.btn-link:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }

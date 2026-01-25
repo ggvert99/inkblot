@@ -102,6 +102,23 @@ import Button from '@components/common/Button.astro';
   function closeModal() {
     loginModal?.classList.add('hidden');
     document.body.style.overflow = '';
+    
+    // Reset modal state
+    resetModal();
+  }
+  
+  function resetModal() {
+    // Clear email input
+    const emailInput = document.getElementById('loginEmail') as HTMLInputElement;
+    if (emailInput) emailInput.value = '';
+    
+    // Clear code inputs
+    codeInputs.forEach(input => {
+      input.value = '';
+    });
+    
+    // Reset to email step
+    userEmail = '';
   }
   
   function showStep(step: 'email' | 'code' | 'success') {

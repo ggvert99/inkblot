@@ -1,27 +1,15 @@
 ---
 import Icon from '@components/common/Icon.astro';
 import Button from '@components/common/Button.astro';
-
-interface NavItem {
-  label: string;
-  href: string;
-}
+import { navItems } from '@lib/navigation';
 
 const base = import.meta.env.BASE_URL;
-
-const navItems: NavItem[] = [
-  { label: 'How it works', href: '#how-it-works' },
-  { label: "What's inside", href: '#whats-inside' },
-  { label: 'Community', href: '#community' },
-  { label: 'For publishers', href: '/publishers' },
-  { label: 'FAQ', href: '#faq' },
-];
 ---
 
 <header class="header" id="header">
   <div class="container header-inner">
     <a href={base} class="logo">
-      <img src="/inkblot/images/logo2.svg" alt="Inkblot Crew - indie romance finds you" class="logo-img" />
+      <img src={`${base}/images/logo2.svg`} alt="Inkblot Crew - indie romance finds you" class="logo-img" />
     </a>
     
     <nav class="nav" id="nav">

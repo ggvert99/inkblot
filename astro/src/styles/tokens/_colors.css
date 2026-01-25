@@ -19,4 +19,8 @@
   --color-text-primary: var(--color-chocolate);
   --color-text-secondary: var(--color-aubergine);
   --color-accent: var(--color-terracotta);
+  
+  /* Primary Colors (aliases for publisher pages) */
+  --color-primary: var(--color-aubergine);
+  --color-primary-dark: var(--color-chocolate);
 }

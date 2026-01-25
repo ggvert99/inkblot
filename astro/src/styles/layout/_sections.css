@@ -5,6 +5,7 @@
 /* ===== Hero Section ===== */
 .hero {
   min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -611,7 +612,7 @@
 
 @media (min-width: 1024px) {
   .bento-quote {
-    grid-column: span 2;
+    grid-column: span 3;
   }
 }
 
@@ -724,6 +725,18 @@
 @media (min-width: 1024px) {
   .audience-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Single card layout - centered */
+.audience-grid.audience-single {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+  .audience-grid.audience-single {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -882,13 +895,18 @@
 }
 
 .faq-answer {
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   overflow: hidden;
-  transition: max-height var(--transition-base), padding var(--transition-base);
+  transition: grid-template-rows var(--transition-base), padding var(--transition-base);
+}
+
+.faq-answer > * {
+  overflow: hidden;
 }
 
 .faq-item.active .faq-answer {
-  max-height: 300px;
+  grid-template-rows: 1fr;
   padding-bottom: var(--space-5);
 }
 

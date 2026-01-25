@@ -17,24 +17,25 @@ const socialLinks = [
 
 const contactLinks = [
   { label: 'inkblotcrew@gmail.com', href: 'mailto:inkblotcrew@gmail.com' },
-  { label: 'Partner with us', href: '/publishers' },
+  { label: 'Partner with us', href: `${base}/publishers` },
 ];
 ---
 
 <footer class="footer">
   <div class="container">
-    <div class="footer-main">
+    <!-- Top Section: Brand + Links -->
+    <div class="footer-top">
       <div class="footer-brand">
-        <a href={base} class="logo">
-          <img src="/inkblot/images/logo.svg" alt="Inkblot Crew - Where undiscovered love stories meet their readers" class="logo-img" />
+        <a href={base} class="footer-logo">
+          <img src={`${base}/images/logo.svg`} alt="Inkblot Crew" class="footer-logo-img" />
         </a>
-        <p class="footer-mission">
+        <p class="footer-tagline">
           Curated quarterly boxes spotlighting indie romance authors 
           and the readers who love discovering them.
         </p>
       </div>
       
-      <div class="footer-links">
+      <div class="footer-columns">
         <div class="footer-col">
           <h4>Explore</h4>
           <ul>
@@ -45,23 +46,6 @@ const contactLinks = [
         </div>
         
         <div class="footer-col">
-          <h4>Connect</h4>
-          <div class="social-icons">
-            {socialLinks.map((social) => (
-              <a 
-                href={social.href} 
-                target="_blank" 
-                rel="noopener" 
-                class="social-icon-link" 
-                aria-label={social.label}
-              >
-                <Icon name={social.name} size={14} />
-              </a>
-            ))}
-          </div>
-        </div>
-        
-        <div class="footer-col">
           <h4>Contact</h4>
           <ul>
             {contactLinks.map((link) => (
@@ -69,18 +53,33 @@ const contactLinks = [
             ))}
           </ul>
         </div>
+        
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <div class="footer-social">
+            {socialLinks.map((social) => (
+              <a 
+                href={social.href} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="social-link" 
+                aria-label={social.label}
+              >
+                <Icon name={social.name} size={18} />
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
     
+    <!-- Bottom Section: Legal + Copyright -->
     <div class="footer-bottom">
+      <p class="footer-copyright">© {new Date().getFullYear()} Inkblot Crew. Made with love for romance readers.</p>
       <div class="footer-legal">
         <a href="#">Privacy Policy</a>
-        <span class="divider">•</span>
         <a href="#">Terms of Service</a>
       </div>
-      <p class="footer-copyright">
-        © {new Date().getFullYear()} Inkblot Crew. Made with love for romance readers.
-      </p>
     </div>
   </div>
 </footer>
